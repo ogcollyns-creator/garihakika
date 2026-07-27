@@ -689,7 +689,7 @@ function applyFlags() {
   document.querySelectorAll('[data-flag]').forEach(n => {
     if (!FLAGS[n.dataset.flag]) n.remove();
   });
-  $('site-name').textContent = SITE.name;
+  $('site-name').textContent = 'Hakika';
   document.querySelectorAll('[data-contact]').forEach(n => { n.textContent = SITE.contact; n.href = 'mailto:' + SITE.contact; });
 }
 
