@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Terms — GariHakika</title><meta name="description" content="Terms of use for GariHakika, including the limits of our price and cost estimates.">
+<style>
+/* GariHakika — single stylesheet. Mobile-first: Kenyan mobile data is metered, keep this small. */
+:root{
+  --green:#0b6b3a; --green-2:#0e8347; --green-soft:#e8f5ee;
+  --ink:#0f1613; --ink-2:#41524a; --ink-3:#6f8378;
+  --line:#dde6e1; --bg:#f6f8f7; --card:#fff;
+  --amber:#8a5a06; --amber-soft:#fef3c7; --amber-line:#f0d9a0;
+  --red:#a51f1f; --red-soft:#fde8e8; --red-line:#f0c0c0;
+  --blue:#1b3fb8; --blue-soft:#e3e8ff;
+  --r:14px; --shadow:0 1px 2px rgba(15,22,19,.05),0 8px 24px rgba(15,22,19,.06);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--ink);font-size:16px;line-height:1.55}
+img,svg{max-width:100%}
+button{font:inherit;cursor:pointer}
+a{color:var(--green-2)}
+.wrap{max-width:1280px;margin:0 auto;padding:0 16px}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.skip{position:absolute;left:-999px;background:#fff;padding:10px 14px;z-index:200}
+.skip:focus{left:8px;top:8px}
+:focus-visible{outline:3px solid var(--green-2);outline-offset:2px}
+
+/* header */
+.topbar{background:var(--green);color:#fff;position:sticky;top:0;z-index:50;box-shadow:0 2px 10px rgba(0,0,0,.12)}
+.bar{display:flex;align-items:center;gap:16px;min-height:60px;flex-wrap:wrap;padding-block:8px}
+.logo{font-weight:800;font-size:20px;letter-spacing:-.4px;margin:0}
+.logo span{background:#fff;color:var(--green);border-radius:6px;padding:1px 6px;margin-left:1px}
+nav{display:flex;gap:4px;margin-left:auto;flex-wrap:wrap}
+nav button{background:none;border:0;color:#cfe8db;padding:10px 13px;border-radius:8px;font-size:14.5px;font-weight:600;min-height:44px}
+nav button:hover{background:rgba(255,255,255,.14);color:#fff}
+nav button[aria-current=page]{background:#fff;color:var(--green)}
+
+/* hero */
+.hero{background:linear-gradient(160deg,#0b6b3a,#064d29 60%,#03301a);color:#fff;padding:40px 0 34px}
+.hero h1{font-size:clamp(25px,5vw,34px);margin:0 0 10px;letter-spacing:-.7px;line-height:1.18;max-width:22ch}
+.lede{color:#bfe0cf;max-width:62ch;margin:0 0 20px;font-size:16.5px}
+.view:not(#view-browse) .lede{color:var(--ink-2)}
+.presets{display:flex;gap:8px;flex-wrap:wrap}
+.presets button{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.3);color:#fff;padding:10px 15px;border-radius:999px;font-size:14px;font-weight:600;min-height:44px}
+.presets button:hover{background:#fff;color:var(--green)}
+.stats{display:flex;gap:28px;margin:24px 0 0;flex-wrap:wrap}
+.stats div{margin:0}
+.stats dd{margin:0;font-size:21px;font-weight:800}
+.stats dt{color:#9ecdb4;font-size:12px;text-transform:uppercase;letter-spacing:.7px}
+
+h1{font-size:clamp(24px,4vw,30px);letter-spacing:-.6px;margin:26px 0 8px}
+h2{font-size:17px;margin:0 0 14px;letter-spacing:-.2px}
+h3{margin:0 0 3px;font-size:16px;letter-spacing:-.2px}
+h4{margin:0 0 10px;font-size:15px}
+.view{padding-bottom:56px}
+.loading{padding:60px 16px;color:var(--ink-3)}
+
+/* layout */
+.layout{display:grid;grid-template-columns:288px 1fr;gap:22px;align-items:start;margin-top:20px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:18px}
+@media(max-width:900px){.layout,.two{grid-template-columns:1fr}}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:18px;box-shadow:var(--shadow);margin-bottom:18px}
+
+/* filters */
+.fgroup{margin:0 0 16px;padding:0 0 14px;border:0;border-bottom:1px solid var(--line)}
+.fgroup:last-child{border:0;margin:0;padding:0}
+.fgroup>label,.fgroup>legend{display:block;font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:var(--ink-3);margin-bottom:8px;padding:0}
+select,input[type=text],input[type=number]{width:100%;padding:11px 10px;border:1px solid var(--line);border-radius:9px;background:#fff;font:inherit;font-size:15px;color:var(--ink);min-height:44px}
+input[type=range]{width:100%;accent-color:var(--green);min-height:32px}
+.range-row{display:flex;justify-content:space-between;font-size:13px;color:var(--ink-2);margin:2px 0 0}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{border:1px solid var(--line);background:#fff;border-radius:999px;padding:9px 13px;font-size:13.5px;font-weight:600;color:var(--ink-2);min-height:40px}
+.chip.on{background:var(--green);border-color:var(--green);color:#fff}
+.link{background:none;border:0;color:var(--green-2);font-weight:700;font-size:13.5px;padding:4px;float:right}
+
+.toolbar{display:flex;align-items:center;gap:12px;margin-bottom:14px;flex-wrap:wrap}
+.toolbar select{width:auto;min-width:180px}
+.toolbar select:first-of-type{margin-right:0}
+.count{font-weight:700;margin:0}
+#sort{margin-left:auto}
+.sub{color:var(--ink-3);font-weight:400;font-size:13.5px;margin:0}
+.note{font-size:12.5px;color:var(--ink-3);margin:8px 0 0}
+.centred{text-align:center}
+.spread{display:flex;justify-content:space-between}
+
+/* cards */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column}
+.card:hover{box-shadow:0 10px 30px rgba(15,22,19,.12)}
+.thumb{height:130px;display:flex;align-items:center;justify-content:center;position:relative;background:linear-gradient(135deg,#e9efeb,#d7e3db);color:var(--green)}
+.thumb svg{width:74%}
+.badge,.verdict{position:absolute;top:9px;font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:.6px;padding:5px 8px;border-radius:6px}
+.badge{left:9px}
+.verdict{right:9px;background:#fff;border:1px solid var(--line);text-transform:none;letter-spacing:0;font-size:11px}
+.badge.ok{background:var(--green);color:#fff}
+.badge.info{background:var(--blue);color:#fff}
+.badge.warn{background:var(--amber-soft);color:var(--amber)}
+.verdict.good{color:var(--green-2);border-color:#b7e0c8}
+.verdict.danger{color:var(--red);border-color:var(--red-line)}
+.card-body{padding:13px 14px;flex:1;display:flex;flex-direction:column}
+.card-body p{margin:0}
+.price{font-size:19px;font-weight:800;color:var(--green);margin:7px 0 2px!important}
+.permonth{font-size:12.5px;color:var(--ink-3);margin-bottom:9px!important}
+.meta{list-style:none;display:flex;flex-wrap:wrap;gap:4px 10px;padding:0;margin:0 0 10px;font-size:12.5px;color:var(--ink-2)}
+.loc{font-size:12.5px;color:var(--ink-3);border-top:1px solid var(--line);padding-top:9px;margin-top:auto!important;display:flex;justify-content:space-between;gap:8px}
+.card-actions{display:flex;gap:7px;padding:0 14px 14px}
+.btn{flex:1;border-radius:9px;padding:11px 8px;font-size:14px;font-weight:700;border:1px solid var(--green);background:var(--green);color:#fff;min-height:44px}
+.btn.ghost{background:#fff;color:var(--green)}
+.btn.wide{width:100%;flex:none}
+.empty{text-align:center;padding:56px 20px;color:var(--ink-3)}
+
+/* banners */
+.banner{background:var(--green-soft);border:1px solid #b7e0c8;border-radius:12px;padding:13px 15px;margin:0 0 14px;font-size:14.5px}
+.banner.warn{background:var(--amber-soft);border-color:var(--amber-line);color:var(--amber)}
+.banner.danger{background:var(--red-soft);border-color:var(--red-line);color:var(--red)}
+.banner.ok{background:var(--green-soft);border-color:#b7e0c8}
+.banner dl{margin:8px 0 0}
+
+/* data display */
+.kv{margin:0}
+.kv>div{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px dashed var(--line)}
+.kv>div:last-child{border:0}
+.kv dt{color:var(--ink-2);font-size:14px}
+.kv dd{margin:0;font-weight:700;font-size:14px;text-align:right}
+.specs{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden;margin:0 0 16px}
+.specs>div{background:#fff;padding:11px 13px}
+.specs dt{color:var(--ink-3);font-size:11px;text-transform:uppercase;letter-spacing:.5px;margin-bottom:2px}
+.specs dd{margin:0;font-size:14.5px;font-weight:700}
+.big{font-size:27px;font-weight:800;color:var(--green);margin:6px 0 2px}
+.big.danger{color:var(--red)} .big.warn{color:var(--amber)} .big.good{color:var(--green)}
+.bar{height:9px;background:var(--line);border-radius:99px;overflow:hidden;margin:8px 0 4px}
+.bar i{display:block;height:100%;background:var(--green-2)}
+.bar i.danger{background:var(--red)} .bar i.warn{background:var(--amber)}
+.pill{display:inline-block;font-size:11.5px;font-weight:700;padding:4px 9px;border-radius:999px;margin:0 6px 6px 0;background:var(--green-soft);color:var(--green)}
+.pill.info{background:var(--blue-soft);color:var(--blue)}
+.pill.warn{background:var(--amber-soft);color:var(--amber)}
+.pill.danger{background:var(--red-soft);color:var(--red)}
+.pill.neutral{background:var(--line);color:var(--ink-2)}
+.box{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:16px}
+.box ul{margin:0;padding-left:19px;font-size:14.5px;color:var(--ink-2)}
+.box li{margin-bottom:5px}
+.scroll-x{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:14px;min-width:520px}
+th,td{text-align:left;padding:10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:11px;text-transform:uppercase;letter-spacing:.6px;color:var(--ink-3)}
+.flag{padding:11px 0;border-bottom:1px solid var(--line);font-size:14.5px;margin:0}
+.flag:last-child{border:0}
+.flag.good{color:var(--green)} .flag.bad{color:var(--red)} .flag.warn{color:var(--amber)}
+details{border-bottom:1px solid var(--line);padding:10px 0}
+details:last-child{border:0}
+summary{font-weight:700;cursor:pointer;font-size:15px}
+details p{margin:8px 0 0;color:var(--ink-2);font-size:14.5px}
+.verdict-block{text-align:center;padding:4px 0 12px;border-bottom:1px solid var(--line);margin-bottom:12px}
+
+/* modal */
+.modal{position:fixed;inset:0;background:rgba(8,20,14,.55);z-index:100;padding:12px;overflow-y:auto}
+.sheet{background:var(--bg);max-width:960px;margin:16px auto;border-radius:16px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.35)}
+.sheet-head{background:var(--green);color:#fff;padding:18px 20px;display:flex;justify-content:space-between;align-items:flex-start;gap:14px}
+.sheet-head h2{margin:0;font-size:21px;color:#fff}
+.sheet-head p{margin:4px 0 0;color:#bfe0cf;font-size:13.5px}
+.close{background:rgba(255,255,255,.16);border:0;color:#fff;width:44px;height:44px;border-radius:10px;font-size:22px;line-height:1;flex-shrink:0}
+.sheet-body{padding:18px 20px 28px}
+.tabs{display:flex;gap:2px;border-bottom:1px solid var(--line);margin-bottom:18px;overflow-x:auto}
+.tabs button{background:none;border:0;border-bottom:3px solid transparent;padding:11px 13px;font-weight:700;font-size:14px;color:var(--ink-3);white-space:nowrap;min-height:44px}
+.tabs button[aria-selected=true]{color:var(--green);border-color:var(--green)}
+
+footer{background:#05271a;color:#8fc0a6;padding:28px 0;font-size:14px;margin-top:24px}
+footer a{color:#bfe0cf}
+footer p{margin:0 0 8px;max-width:80ch}
+footer .note{color:#5f8a72}
+
+/* View titles below the browse view: styled like h1, marked up as h2 so the
+   document keeps exactly one h1. */
+.page-title{font-size:clamp(24px,4vw,30px);letter-spacing:-.6px;margin:26px 0 8px}
+h3{margin:0 0 14px;font-size:17px;letter-spacing:-.2px}
+.card h3{margin:0 0 3px;font-size:16px}
+.sheet h3{margin:0 0 10px;font-size:15px}
+
+</style></head><body>
+<header class="topbar"><div class="wrap bar"><p class="logo">Gari<span>Hakika</span></p>
+<nav><button onclick="location.href='index.html'">Back to site</button></nav></div></header>
+<main class="wrap" style="max-width:760px">
+<h1>Terms of use</h1>
+
+<div class="panel"><h2>What this site is</h2>
+<p>An information and comparison tool. We are not a dealer, a broker, a lender, an insurer or a financial adviser. We do not sell cars, hold stock, or take payment for vehicles.</p></div>
+
+<div class="panel"><h2>The estimates are estimates</h2>
+<p>Running costs, price bands, repayment figures, insurance premiums and import duty are calculated from published market data using stated assumptions. They are there to help you compare options and ask better questions.</p>
+<p><b>They are not quotes.</b> Fuel prices change monthly, lender rates move with the CBK rate, KRA applies its own CRSP schedule and depreciation table, and insurers price on your individual risk. Confirm every figure in writing with the provider before you commit money.</p></div>
+
+<div class="panel"><h2>Trust labels</h2>
+<p><b>Verified</b> means a person from our team physically confirmed the yard or matched the seller&rsquo;s ID to the logbook. <b>Inspected</b> means a documented mechanical inspection exists. <b>Unverified</b> means we found the listing publicly and have checked nothing about it.</p>
+<p>No label — including Verified — is a guarantee of a vehicle&rsquo;s condition, title or legality. Always run the registration through NTSA TIMS and pay for your own independent inspection before any money moves.</p></div>
+
+<div class="panel"><h2>Third-party listings and links</h2>
+<p>Where we show a listing found elsewhere we link to the source and do not act as a party to any transaction. Any dealing you have with a seller is between you and them.</p></div>
+
+<div class="panel"><h2>Our data</h2>
+<p>Site code is MIT licensed. The derived aggregates — price bands, medians, model statistics — are our own work. You are welcome to cite them with attribution. Bulk redistribution of the index as a competing dataset is not permitted.</p></div>
+
+<div class="panel"><h2>Liability</h2>
+<p>We take real care with accuracy and we correct errors when we find or are told about them. But we provide this information as-is, and we are not liable for losses arising from decisions you make using it. Buying a car is your decision and your risk.</p>
+<p>Found something wrong? <a href="mailto:hello@garihakika.co.ke">Tell us</a> — corrections are logged and dated.</p></div>
+
+<p class="note">Last updated 27 July 2026.</p>
+</main>
+<footer><div class="wrap"><p><a href="index.html">Back to GariHakika</a> · <a href="privacy.html">Privacy</a> · <a href="bot.html">Crawler</a></p></div></footer>
+</body></html>

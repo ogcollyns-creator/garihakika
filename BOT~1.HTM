@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GariHakikaBot — what our crawler does, and how to stop it</title>
+<meta name="description" content="What the GariHakika crawler collects, what it refuses to collect, and how to opt your site out. Opt-outs are honoured within 48 hours.">
+<style>
+/* GariHakika — single stylesheet. Mobile-first: Kenyan mobile data is metered, keep this small. */
+:root{
+  --green:#0b6b3a; --green-2:#0e8347; --green-soft:#e8f5ee;
+  --ink:#0f1613; --ink-2:#41524a; --ink-3:#6f8378;
+  --line:#dde6e1; --bg:#f6f8f7; --card:#fff;
+  --amber:#8a5a06; --amber-soft:#fef3c7; --amber-line:#f0d9a0;
+  --red:#a51f1f; --red-soft:#fde8e8; --red-line:#f0c0c0;
+  --blue:#1b3fb8; --blue-soft:#e3e8ff;
+  --r:14px; --shadow:0 1px 2px rgba(15,22,19,.05),0 8px 24px rgba(15,22,19,.06);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--ink);font-size:16px;line-height:1.55}
+img,svg{max-width:100%}
+button{font:inherit;cursor:pointer}
+a{color:var(--green-2)}
+.wrap{max-width:1280px;margin:0 auto;padding:0 16px}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.skip{position:absolute;left:-999px;background:#fff;padding:10px 14px;z-index:200}
+.skip:focus{left:8px;top:8px}
+:focus-visible{outline:3px solid var(--green-2);outline-offset:2px}
+
+/* header */
+.topbar{background:var(--green);color:#fff;position:sticky;top:0;z-index:50;box-shadow:0 2px 10px rgba(0,0,0,.12)}
+.bar{display:flex;align-items:center;gap:16px;min-height:60px;flex-wrap:wrap;padding-block:8px}
+.logo{font-weight:800;font-size:20px;letter-spacing:-.4px;margin:0}
+.logo span{background:#fff;color:var(--green);border-radius:6px;padding:1px 6px;margin-left:1px}
+nav{display:flex;gap:4px;margin-left:auto;flex-wrap:wrap}
+nav button{background:none;border:0;color:#cfe8db;padding:10px 13px;border-radius:8px;font-size:14.5px;font-weight:600;min-height:44px}
+nav button:hover{background:rgba(255,255,255,.14);color:#fff}
+nav button[aria-current=page]{background:#fff;color:var(--green)}
+
+/* hero */
+.hero{background:linear-gradient(160deg,#0b6b3a,#064d29 60%,#03301a);color:#fff;padding:40px 0 34px}
+.hero h1{font-size:clamp(25px,5vw,34px);margin:0 0 10px;letter-spacing:-.7px;line-height:1.18;max-width:22ch}
+.lede{color:#bfe0cf;max-width:62ch;margin:0 0 20px;font-size:16.5px}
+.view:not(#view-browse) .lede{color:var(--ink-2)}
+.presets{display:flex;gap:8px;flex-wrap:wrap}
+.presets button{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.3);color:#fff;padding:10px 15px;border-radius:999px;font-size:14px;font-weight:600;min-height:44px}
+.presets button:hover{background:#fff;color:var(--green)}
+.stats{display:flex;gap:28px;margin:24px 0 0;flex-wrap:wrap}
+.stats div{margin:0}
+.stats dd{margin:0;font-size:21px;font-weight:800}
+.stats dt{color:#9ecdb4;font-size:12px;text-transform:uppercase;letter-spacing:.7px}
+
+h1{font-size:clamp(24px,4vw,30px);letter-spacing:-.6px;margin:26px 0 8px}
+h2{font-size:17px;margin:0 0 14px;letter-spacing:-.2px}
+h3{margin:0 0 3px;font-size:16px;letter-spacing:-.2px}
+h4{margin:0 0 10px;font-size:15px}
+.view{padding-bottom:56px}
+.loading{padding:60px 16px;color:var(--ink-3)}
+
+/* layout */
+.layout{display:grid;grid-template-columns:288px 1fr;gap:22px;align-items:start;margin-top:20px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:18px}
+@media(max-width:900px){.layout,.two{grid-template-columns:1fr}}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:18px;box-shadow:var(--shadow);margin-bottom:18px}
+
+/* filters */
+.fgroup{margin:0 0 16px;padding:0 0 14px;border:0;border-bottom:1px solid var(--line)}
+.fgroup:last-child{border:0;margin:0;padding:0}
+.fgroup>label,.fgroup>legend{display:block;font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:var(--ink-3);margin-bottom:8px;padding:0}
+select,input[type=text],input[type=number]{width:100%;padding:11px 10px;border:1px solid var(--line);border-radius:9px;background:#fff;font:inherit;font-size:15px;color:var(--ink);min-height:44px}
+input[type=range]{width:100%;accent-color:var(--green);min-height:32px}
+.range-row{display:flex;justify-content:space-between;font-size:13px;color:var(--ink-2);margin:2px 0 0}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{border:1px solid var(--line);background:#fff;border-radius:999px;padding:9px 13px;font-size:13.5px;font-weight:600;color:var(--ink-2);min-height:40px}
+.chip.on{background:var(--green);border-color:var(--green);color:#fff}
+.link{background:none;border:0;color:var(--green-2);font-weight:700;font-size:13.5px;padding:4px;float:right}
+
+.toolbar{display:flex;align-items:center;gap:12px;margin-bottom:14px;flex-wrap:wrap}
+.toolbar select{width:auto;min-width:180px}
+.toolbar select:first-of-type{margin-right:0}
+.count{font-weight:700;margin:0}
+#sort{margin-left:auto}
+.sub{color:var(--ink-3);font-weight:400;font-size:13.5px;margin:0}
+.note{font-size:12.5px;color:var(--ink-3);margin:8px 0 0}
+.centred{text-align:center}
+.spread{display:flex;justify-content:space-between}
+
+/* cards */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column}
+.card:hover{box-shadow:0 10px 30px rgba(15,22,19,.12)}
+.thumb{height:130px;display:flex;align-items:center;justify-content:center;position:relative;background:linear-gradient(135deg,#e9efeb,#d7e3db);color:var(--green)}
+.thumb svg{width:74%}
+.badge,.verdict{position:absolute;top:9px;font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:.6px;padding:5px 8px;border-radius:6px}
+.badge{left:9px}
+.verdict{right:9px;background:#fff;border:1px solid var(--line);text-transform:none;letter-spacing:0;font-size:11px}
+.badge.ok{background:var(--green);color:#fff}
+.badge.info{background:var(--blue);color:#fff}
+.badge.warn{background:var(--amber-soft);color:var(--amber)}
+.verdict.good{color:var(--green-2);border-color:#b7e0c8}
+.verdict.danger{color:var(--red);border-color:var(--red-line)}
+.card-body{padding:13px 14px;flex:1;display:flex;flex-direction:column}
+.card-body p{margin:0}
+.price{font-size:19px;font-weight:800;color:var(--green);margin:7px 0 2px!important}
+.permonth{font-size:12.5px;color:var(--ink-3);margin-bottom:9px!important}
+.meta{list-style:none;display:flex;flex-wrap:wrap;gap:4px 10px;padding:0;margin:0 0 10px;font-size:12.5px;color:var(--ink-2)}
+.loc{font-size:12.5px;color:var(--ink-3);border-top:1px solid var(--line);padding-top:9px;margin-top:auto!important;display:flex;justify-content:space-between;gap:8px}
+.card-actions{display:flex;gap:7px;padding:0 14px 14px}
+.btn{flex:1;border-radius:9px;padding:11px 8px;font-size:14px;font-weight:700;border:1px solid var(--green);background:var(--green);color:#fff;min-height:44px}
+.btn.ghost{background:#fff;color:var(--green)}
+.btn.wide{width:100%;flex:none}
+.empty{text-align:center;padding:56px 20px;color:var(--ink-3)}
+
+/* banners */
+.banner{background:var(--green-soft);border:1px solid #b7e0c8;border-radius:12px;padding:13px 15px;margin:0 0 14px;font-size:14.5px}
+.banner.warn{background:var(--amber-soft);border-color:var(--amber-line);color:var(--amber)}
+.banner.danger{background:var(--red-soft);border-color:var(--red-line);color:var(--red)}
+.banner.ok{background:var(--green-soft);border-color:#b7e0c8}
+.banner dl{margin:8px 0 0}
+
+/* data display */
+.kv{margin:0}
+.kv>div{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px dashed var(--line)}
+.kv>div:last-child{border:0}
+.kv dt{color:var(--ink-2);font-size:14px}
+.kv dd{margin:0;font-weight:700;font-size:14px;text-align:right}
+.specs{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden;margin:0 0 16px}
+.specs>div{background:#fff;padding:11px 13px}
+.specs dt{color:var(--ink-3);font-size:11px;text-transform:uppercase;letter-spacing:.5px;margin-bottom:2px}
+.specs dd{margin:0;font-size:14.5px;font-weight:700}
+.big{font-size:27px;font-weight:800;color:var(--green);margin:6px 0 2px}
+.big.danger{color:var(--red)} .big.warn{color:var(--amber)} .big.good{color:var(--green)}
+.bar{height:9px;background:var(--line);border-radius:99px;overflow:hidden;margin:8px 0 4px}
+.bar i{display:block;height:100%;background:var(--green-2)}
+.bar i.danger{background:var(--red)} .bar i.warn{background:var(--amber)}
+.pill{display:inline-block;font-size:11.5px;font-weight:700;padding:4px 9px;border-radius:999px;margin:0 6px 6px 0;background:var(--green-soft);color:var(--green)}
+.pill.info{background:var(--blue-soft);color:var(--blue)}
+.pill.warn{background:var(--amber-soft);color:var(--amber)}
+.pill.danger{background:var(--red-soft);color:var(--red)}
+.pill.neutral{background:var(--line);color:var(--ink-2)}
+.box{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:16px}
+.box ul{margin:0;padding-left:19px;font-size:14.5px;color:var(--ink-2)}
+.box li{margin-bottom:5px}
+.scroll-x{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:14px;min-width:520px}
+th,td{text-align:left;padding:10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:11px;text-transform:uppercase;letter-spacing:.6px;color:var(--ink-3)}
+.flag{padding:11px 0;border-bottom:1px solid var(--line);font-size:14.5px;margin:0}
+.flag:last-child{border:0}
+.flag.good{color:var(--green)} .flag.bad{color:var(--red)} .flag.warn{color:var(--amber)}
+details{border-bottom:1px solid var(--line);padding:10px 0}
+details:last-child{border:0}
+summary{font-weight:700;cursor:pointer;font-size:15px}
+details p{margin:8px 0 0;color:var(--ink-2);font-size:14.5px}
+.verdict-block{text-align:center;padding:4px 0 12px;border-bottom:1px solid var(--line);margin-bottom:12px}
+
+/* modal */
+.modal{position:fixed;inset:0;background:rgba(8,20,14,.55);z-index:100;padding:12px;overflow-y:auto}
+.sheet{background:var(--bg);max-width:960px;margin:16px auto;border-radius:16px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.35)}
+.sheet-head{background:var(--green);color:#fff;padding:18px 20px;display:flex;justify-content:space-between;align-items:flex-start;gap:14px}
+.sheet-head h2{margin:0;font-size:21px;color:#fff}
+.sheet-head p{margin:4px 0 0;color:#bfe0cf;font-size:13.5px}
+.close{background:rgba(255,255,255,.16);border:0;color:#fff;width:44px;height:44px;border-radius:10px;font-size:22px;line-height:1;flex-shrink:0}
+.sheet-body{padding:18px 20px 28px}
+.tabs{display:flex;gap:2px;border-bottom:1px solid var(--line);margin-bottom:18px;overflow-x:auto}
+.tabs button{background:none;border:0;border-bottom:3px solid transparent;padding:11px 13px;font-weight:700;font-size:14px;color:var(--ink-3);white-space:nowrap;min-height:44px}
+.tabs button[aria-selected=true]{color:var(--green);border-color:var(--green)}
+
+footer{background:#05271a;color:#8fc0a6;padding:28px 0;font-size:14px;margin-top:24px}
+footer a{color:#bfe0cf}
+footer p{margin:0 0 8px;max-width:80ch}
+footer .note{color:#5f8a72}
+
+/* View titles below the browse view: styled like h1, marked up as h2 so the
+   document keeps exactly one h1. */
+.page-title{font-size:clamp(24px,4vw,30px);letter-spacing:-.6px;margin:26px 0 8px}
+h3{margin:0 0 14px;font-size:17px;letter-spacing:-.2px}
+.card h3{margin:0 0 3px;font-size:16px}
+.sheet h3{margin:0 0 10px;font-size:15px}
+
+</style>
+</head>
+<body>
+<header class="topbar"><div class="wrap bar"><p class="logo">Gari<span>Hakika</span></p>
+<nav><button onclick="location.href='index.html'">Back to site</button></nav></div></header>
+
+<main class="wrap" style="max-width:760px">
+<h1>GariHakikaBot</h1>
+<p class="lede">We run a crawler that reads publicly available vehicle listings to build a price index for Kenyan car buyers. This page explains exactly what it does, and gives you a one-email way to stop it.</p>
+
+<div class="banner ok">
+<b>Want us to stop?</b> Email <a href="mailto:data@garihakika.co.ke?subject=Crawler%20opt-out">data@garihakika.co.ke</a> with your domain.
+We remove it within 48 hours, permanently, and we keep a record. You do not need to explain why.
+</div>
+
+<div class="panel">
+<h2>How to identify us</h2>
+<p>Our requests carry this user agent:</p>
+<pre style="background:#f2f6f4;padding:12px;border-radius:8px;overflow-x:auto;font-size:13px">GariHakikaBot/1.0 (+https://garihakika.co.ke/bot; contact: data@garihakika.co.ke)</pre>
+<p class="note">If a request claims to be us and does not match that string, it is not us.</p>
+</div>
+
+<div class="panel">
+<h2>What we collect</h2>
+<ul class="box" style="border:0;padding:0;margin:0">
+<li>Vehicle facts: make, model, year, price, mileage, engine size, fuel, transmission, body type, town</li>
+<li>The public URL of the listing, so we can link buyers back to you</li>
+<li>The dealer&rsquo;s <em>business</em> name and yard location</li>
+</ul>
+</div>
+
+<div class="panel">
+<h2>What we refuse to collect</h2>
+<ul class="box" style="border:0;padding:0;margin:0">
+<li><b>No phone numbers.</b> Not the seller&rsquo;s, not the dealer&rsquo;s, not a WhatsApp link.</li>
+<li><b>No email addresses.</b></li>
+<li><b>No personal names, ID numbers or logbook images.</b></li>
+<li><b>No photographs.</b> We do not copy your images onto our servers.</li>
+<li><b>No verbatim listing copy.</b> We extract structured facts and write our own summaries.</li>
+</ul>
+<p>This is enforced in code, not policy: the extractor deletes any field whose name contains phone, mobile, whatsapp, email, seller, owner, contact or id_number before a row is ever written. We take facts about the <em>car</em>. To contact a seller, buyers are sent to your listing.</p>
+<p class="note">Kenya&rsquo;s Data Protection Act 2019 requires a lawful basis for processing personal data. Scraping and republishing seller contact details has none, so we do not do it.</p>
+</div>
+
+<div class="panel">
+<h2>How we behave</h2>
+<dl class="kv">
+<div><dt>Requests at once, per site</dt><dd>One. Always.</dd></div>
+<div><dt>Delay between requests</dt><dd>Your robots.txt <code>Crawl-delay</code>, or 2 seconds</dd></div>
+<div><dt>robots.txt</dt><dd>Obeyed. A disallowed path is never fetched.</dd></div>
+<div><dt>Login walls</dt><dd>Never bypassed. We do not create accounts to get behind them.</dd></div>
+<div><dt>Unchanged pages</dt><dd>Skipped via ETag / If-Modified-Since, so we cost you almost nothing</dd></div>
+<div><dt>Repeated errors</dt><dd>We back off, then stop requesting for 15 minutes</dd></div>
+</dl>
+</div>
+
+<div class="panel">
+<h2>What we publish</h2>
+<p>Aggregate statistics: median and interquartile price bands per model, year and mileage. A band is never published on fewer than three comparable listings — if we do not have the data, we say so rather than guess.</p>
+<p>We do not mirror your catalogue, and we never present another site&rsquo;s stock as our own. Listings collected by the crawler are marked <b>Unverified</b> and cannot carry a trust badge; a badge requires a person from our team to have visited the yard, matched an ID to a logbook, or taken the photographs.</p>
+</div>
+
+<div class="panel">
+<h2>We would rather have a feed than a crawler</h2>
+<p>If you are a dealer or a marketplace, a direct feed is better for both of us: your data arrives accurate and current, you control what we show, and we stop hitting your server. It is free, and it comes with a dealer profile.</p>
+<p><a href="mailto:hello@garihakika.co.ke?subject=Data%20feed">hello@garihakika.co.ke</a></p>
+</div>
+
+<p class="note">Last updated 27 July 2026.</p>
+</main>
+<footer><div class="wrap"><p><a href="index.html">Back to GariHakika</a> · <a href="privacy.html">Privacy</a></p></div></footer>
+</body>
+</html>

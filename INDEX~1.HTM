@@ -1,0 +1,1212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GariHakika — what a car really costs in Kenya | Prices, running costs, financing</title>
+<meta name="description" content="Compare cars in Kenya by what they cost to own, not just the sticker price. Fuel, insurance, service and parts for every model, plus fair-price bands, financing comparison, import duty and a garage directory.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="GariHakika — what a car really costs in Kenya">
+<meta property="og:description" content="Every car priced honestly. Running costs, fair-price bands, financing and import duty for the Kenyan market.">
+<meta property="og:locale" content="en_KE">
+<meta name="theme-color" content="#0b6b3a">
+<style>
+/* GariHakika — single stylesheet. Mobile-first: Kenyan mobile data is metered, keep this small. */
+:root{
+  --green:#0b6b3a; --green-2:#0e8347; --green-soft:#e8f5ee;
+  --ink:#0f1613; --ink-2:#41524a; --ink-3:#6f8378;
+  --line:#dde6e1; --bg:#f6f8f7; --card:#fff;
+  --amber:#8a5a06; --amber-soft:#fef3c7; --amber-line:#f0d9a0;
+  --red:#a51f1f; --red-soft:#fde8e8; --red-line:#f0c0c0;
+  --blue:#1b3fb8; --blue-soft:#e3e8ff;
+  --r:14px; --shadow:0 1px 2px rgba(15,22,19,.05),0 8px 24px rgba(15,22,19,.06);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--ink);font-size:16px;line-height:1.55}
+img,svg{max-width:100%}
+button{font:inherit;cursor:pointer}
+a{color:var(--green-2)}
+.wrap{max-width:1280px;margin:0 auto;padding:0 16px}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.skip{position:absolute;left:-999px;background:#fff;padding:10px 14px;z-index:200}
+.skip:focus{left:8px;top:8px}
+:focus-visible{outline:3px solid var(--green-2);outline-offset:2px}
+
+/* header */
+.topbar{background:var(--green);color:#fff;position:sticky;top:0;z-index:50;box-shadow:0 2px 10px rgba(0,0,0,.12)}
+.bar{display:flex;align-items:center;gap:16px;min-height:60px;flex-wrap:wrap;padding-block:8px}
+.logo{font-weight:800;font-size:20px;letter-spacing:-.4px;margin:0}
+.logo span{background:#fff;color:var(--green);border-radius:6px;padding:1px 6px;margin-left:1px}
+nav{display:flex;gap:4px;margin-left:auto;flex-wrap:wrap}
+nav button{background:none;border:0;color:#cfe8db;padding:10px 13px;border-radius:8px;font-size:14.5px;font-weight:600;min-height:44px}
+nav button:hover{background:rgba(255,255,255,.14);color:#fff}
+nav button[aria-current=page]{background:#fff;color:var(--green)}
+
+/* hero */
+.hero{background:linear-gradient(160deg,#0b6b3a,#064d29 60%,#03301a);color:#fff;padding:40px 0 34px}
+.hero h1{font-size:clamp(25px,5vw,34px);margin:0 0 10px;letter-spacing:-.7px;line-height:1.18;max-width:22ch}
+.lede{color:#bfe0cf;max-width:62ch;margin:0 0 20px;font-size:16.5px}
+.view:not(#view-browse) .lede{color:var(--ink-2)}
+.presets{display:flex;gap:8px;flex-wrap:wrap}
+.presets button{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.3);color:#fff;padding:10px 15px;border-radius:999px;font-size:14px;font-weight:600;min-height:44px}
+.presets button:hover{background:#fff;color:var(--green)}
+.stats{display:flex;gap:28px;margin:24px 0 0;flex-wrap:wrap}
+.stats div{margin:0}
+.stats dd{margin:0;font-size:21px;font-weight:800}
+.stats dt{color:#9ecdb4;font-size:12px;text-transform:uppercase;letter-spacing:.7px}
+
+h1{font-size:clamp(24px,4vw,30px);letter-spacing:-.6px;margin:26px 0 8px}
+h2{font-size:17px;margin:0 0 14px;letter-spacing:-.2px}
+h3{margin:0 0 3px;font-size:16px;letter-spacing:-.2px}
+h4{margin:0 0 10px;font-size:15px}
+.view{padding-bottom:56px}
+.loading{padding:60px 16px;color:var(--ink-3)}
+
+/* layout */
+.layout{display:grid;grid-template-columns:288px 1fr;gap:22px;align-items:start;margin-top:20px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:18px}
+@media(max-width:900px){.layout,.two{grid-template-columns:1fr}}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:18px;box-shadow:var(--shadow);margin-bottom:18px}
+
+/* filters */
+.fgroup{margin:0 0 16px;padding:0 0 14px;border:0;border-bottom:1px solid var(--line)}
+.fgroup:last-child{border:0;margin:0;padding:0}
+.fgroup>label,.fgroup>legend{display:block;font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:var(--ink-3);margin-bottom:8px;padding:0}
+select,input[type=text],input[type=number]{width:100%;padding:11px 10px;border:1px solid var(--line);border-radius:9px;background:#fff;font:inherit;font-size:15px;color:var(--ink);min-height:44px}
+input[type=range]{width:100%;accent-color:var(--green);min-height:32px}
+.range-row{display:flex;justify-content:space-between;font-size:13px;color:var(--ink-2);margin:2px 0 0}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{border:1px solid var(--line);background:#fff;border-radius:999px;padding:9px 13px;font-size:13.5px;font-weight:600;color:var(--ink-2);min-height:40px}
+.chip.on{background:var(--green);border-color:var(--green);color:#fff}
+.link{background:none;border:0;color:var(--green-2);font-weight:700;font-size:13.5px;padding:4px;float:right}
+
+.toolbar{display:flex;align-items:center;gap:12px;margin-bottom:14px;flex-wrap:wrap}
+.toolbar select{width:auto;min-width:180px}
+.toolbar select:first-of-type{margin-right:0}
+.count{font-weight:700;margin:0}
+#sort{margin-left:auto}
+.sub{color:var(--ink-3);font-weight:400;font-size:13.5px;margin:0}
+.note{font-size:12.5px;color:var(--ink-3);margin:8px 0 0}
+.centred{text-align:center}
+.spread{display:flex;justify-content:space-between}
+
+/* cards */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column}
+.card:hover{box-shadow:0 10px 30px rgba(15,22,19,.12)}
+.thumb{height:130px;display:flex;align-items:center;justify-content:center;position:relative;background:linear-gradient(135deg,#e9efeb,#d7e3db);color:var(--green)}
+.thumb svg{width:74%}
+.badge,.verdict{position:absolute;top:9px;font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:.6px;padding:5px 8px;border-radius:6px}
+.badge{left:9px}
+.verdict{right:9px;background:#fff;border:1px solid var(--line);text-transform:none;letter-spacing:0;font-size:11px}
+.badge.ok{background:var(--green);color:#fff}
+.badge.info{background:var(--blue);color:#fff}
+.badge.warn{background:var(--amber-soft);color:var(--amber)}
+.verdict.good{color:var(--green-2);border-color:#b7e0c8}
+.verdict.danger{color:var(--red);border-color:var(--red-line)}
+.card-body{padding:13px 14px;flex:1;display:flex;flex-direction:column}
+.card-body p{margin:0}
+.price{font-size:19px;font-weight:800;color:var(--green);margin:7px 0 2px!important}
+.permonth{font-size:12.5px;color:var(--ink-3);margin-bottom:9px!important}
+.meta{list-style:none;display:flex;flex-wrap:wrap;gap:4px 10px;padding:0;margin:0 0 10px;font-size:12.5px;color:var(--ink-2)}
+.loc{font-size:12.5px;color:var(--ink-3);border-top:1px solid var(--line);padding-top:9px;margin-top:auto!important;display:flex;justify-content:space-between;gap:8px}
+.card-actions{display:flex;gap:7px;padding:0 14px 14px}
+.btn{flex:1;border-radius:9px;padding:11px 8px;font-size:14px;font-weight:700;border:1px solid var(--green);background:var(--green);color:#fff;min-height:44px}
+.btn.ghost{background:#fff;color:var(--green)}
+.btn.wide{width:100%;flex:none}
+.empty{text-align:center;padding:56px 20px;color:var(--ink-3)}
+
+/* banners */
+.banner{background:var(--green-soft);border:1px solid #b7e0c8;border-radius:12px;padding:13px 15px;margin:0 0 14px;font-size:14.5px}
+.banner.warn{background:var(--amber-soft);border-color:var(--amber-line);color:var(--amber)}
+.banner.danger{background:var(--red-soft);border-color:var(--red-line);color:var(--red)}
+.banner.ok{background:var(--green-soft);border-color:#b7e0c8}
+.banner dl{margin:8px 0 0}
+
+/* data display */
+.kv{margin:0}
+.kv>div{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px dashed var(--line)}
+.kv>div:last-child{border:0}
+.kv dt{color:var(--ink-2);font-size:14px}
+.kv dd{margin:0;font-weight:700;font-size:14px;text-align:right}
+.specs{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden;margin:0 0 16px}
+.specs>div{background:#fff;padding:11px 13px}
+.specs dt{color:var(--ink-3);font-size:11px;text-transform:uppercase;letter-spacing:.5px;margin-bottom:2px}
+.specs dd{margin:0;font-size:14.5px;font-weight:700}
+.big{font-size:27px;font-weight:800;color:var(--green);margin:6px 0 2px}
+.big.danger{color:var(--red)} .big.warn{color:var(--amber)} .big.good{color:var(--green)}
+.bar{height:9px;background:var(--line);border-radius:99px;overflow:hidden;margin:8px 0 4px}
+.bar i{display:block;height:100%;background:var(--green-2)}
+.bar i.danger{background:var(--red)} .bar i.warn{background:var(--amber)}
+.pill{display:inline-block;font-size:11.5px;font-weight:700;padding:4px 9px;border-radius:999px;margin:0 6px 6px 0;background:var(--green-soft);color:var(--green)}
+.pill.info{background:var(--blue-soft);color:var(--blue)}
+.pill.warn{background:var(--amber-soft);color:var(--amber)}
+.pill.danger{background:var(--red-soft);color:var(--red)}
+.pill.neutral{background:var(--line);color:var(--ink-2)}
+.box{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:16px}
+.box ul{margin:0;padding-left:19px;font-size:14.5px;color:var(--ink-2)}
+.box li{margin-bottom:5px}
+.scroll-x{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:14px;min-width:520px}
+th,td{text-align:left;padding:10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:11px;text-transform:uppercase;letter-spacing:.6px;color:var(--ink-3)}
+.flag{padding:11px 0;border-bottom:1px solid var(--line);font-size:14.5px;margin:0}
+.flag:last-child{border:0}
+.flag.good{color:var(--green)} .flag.bad{color:var(--red)} .flag.warn{color:var(--amber)}
+details{border-bottom:1px solid var(--line);padding:10px 0}
+details:last-child{border:0}
+summary{font-weight:700;cursor:pointer;font-size:15px}
+details p{margin:8px 0 0;color:var(--ink-2);font-size:14.5px}
+.verdict-block{text-align:center;padding:4px 0 12px;border-bottom:1px solid var(--line);margin-bottom:12px}
+
+/* modal */
+.modal{position:fixed;inset:0;background:rgba(8,20,14,.55);z-index:100;padding:12px;overflow-y:auto}
+.sheet{background:var(--bg);max-width:960px;margin:16px auto;border-radius:16px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.35)}
+.sheet-head{background:var(--green);color:#fff;padding:18px 20px;display:flex;justify-content:space-between;align-items:flex-start;gap:14px}
+.sheet-head h2{margin:0;font-size:21px;color:#fff}
+.sheet-head p{margin:4px 0 0;color:#bfe0cf;font-size:13.5px}
+.close{background:rgba(255,255,255,.16);border:0;color:#fff;width:44px;height:44px;border-radius:10px;font-size:22px;line-height:1;flex-shrink:0}
+.sheet-body{padding:18px 20px 28px}
+.tabs{display:flex;gap:2px;border-bottom:1px solid var(--line);margin-bottom:18px;overflow-x:auto}
+.tabs button{background:none;border:0;border-bottom:3px solid transparent;padding:11px 13px;font-weight:700;font-size:14px;color:var(--ink-3);white-space:nowrap;min-height:44px}
+.tabs button[aria-selected=true]{color:var(--green);border-color:var(--green)}
+
+footer{background:#05271a;color:#8fc0a6;padding:28px 0;font-size:14px;margin-top:24px}
+footer a{color:#bfe0cf}
+footer p{margin:0 0 8px;max-width:80ch}
+footer .note{color:#5f8a72}
+
+/* View titles below the browse view: styled like h1, marked up as h2 so the
+   document keeps exactly one h1. */
+.page-title{font-size:clamp(24px,4vw,30px);letter-spacing:-.6px;margin:26px 0 8px}
+h3{margin:0 0 14px;font-size:17px;letter-spacing:-.2px}
+.card h3{margin:0 0 3px;font-size:16px}
+.sheet h3{margin:0 0 10px;font-size:15px}
+
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "GariHakika",
+  "description": "Kenyan car buying priced honestly — running costs, fair-price bands, financing and import duty.",
+  "publisher": { "@type": "Organization", "name": "GariHakika", "areaServed": "KE" }
+}
+</script>
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="topbar">
+  <div class="wrap bar">
+    <p class="logo">Gari<span id="site-name">Hakika</span></p>
+    <nav aria-label="Primary">
+      <button data-view="browse" aria-current="page">Browse cars</button>
+      <button data-view="finance" data-flag="financing">Financing</button>
+      <button data-view="import" data-flag="importCalc">Import duty</button>
+      <button data-view="garages" data-flag="garages">Garages</button>
+      <button data-view="verify" data-flag="verify">Verify a seller</button>
+    </nav>
+  </div>
+</header>
+
+<p id="boot" class="wrap loading">Loading market data…</p>
+<p id="boot-error" class="wrap banner danger" hidden></p>
+
+<main id="app" hidden>
+
+  <!-- ============================ BROWSE ============================ -->
+  <section class="view" id="view-browse">
+    <div class="hero">
+      <div class="wrap">
+        <h1>Every car in Kenya, priced honestly and checked before you call.</h1>
+        <p class="lede">Filter by budget, county, specs and running cost. See what a car actually costs to own — fuel, insurance, service, parts — not just the sticker price.</p>
+        <div class="presets">
+          <button data-preset="firstcar">First car under KSh 1.2M</button>
+          <button data-preset="family">Family 7-seater</button>
+          <button data-preset="work">Business / pick-up</button>
+          <button data-preset="economy">Fuel-savers &amp; hybrids</button>
+          <button data-preset="rough">Upcountry rough roads</button>
+        </div>
+        <dl class="stats">
+          <div><dd id="stat-listings">—</dd><dt>Listings</dt></div>
+          <div><dd id="stat-dealers">—</dd><dt>Dealers</dt></div>
+          <div><dd id="stat-counties">—</dd><dt>Counties</dt></div>
+          <div><dd id="fuel-stat">—</dd><dt>Petrol / litre</dt></div>
+        </dl>
+      </div>
+    </div>
+
+    <div class="wrap" id="main">
+      <div id="banners"></div>
+
+      <div class="layout">
+        <aside class="panel" aria-label="Filters">
+          <h2>Filters <button class="link" id="clear">Reset</button></h2>
+
+          <div class="fgroup">
+            <label for="f-price">Max budget</label>
+            <input type="range" id="f-price" min="500000" max="12000000" step="100000" value="12000000">
+            <p class="range-row"><span>KSh 500K</span><b id="f-price-label">Any</b></p>
+          </div>
+
+          <div class="fgroup">
+            <label for="f-monthly">Pay monthly instead?</label>
+            <input type="range" id="f-monthly" min="0" max="200000" step="5000" value="0">
+            <p class="range-row"><span>Off</span><b id="f-monthly-label">Off</b></p>
+            <p class="note" id="monthly-note"></p>
+          </div>
+
+          <div class="fgroup"><label for="f-county">County</label><select id="f-county"></select></div>
+          <div class="fgroup"><label for="f-city">Town / city</label><select id="f-city"><option value="">All towns</option></select></div>
+
+          <fieldset class="fgroup"><legend>Body type</legend><div class="chips" id="f-body"></div></fieldset>
+          <fieldset class="fgroup"><legend>Condition</legend><div class="chips" id="f-cond"></div></fieldset>
+          <fieldset class="fgroup"><legend>Fuel</legend><div class="chips" id="f-fuel"></div></fieldset>
+          <fieldset class="fgroup"><legend>Transmission</legend><div class="chips" id="f-trans"></div></fieldset>
+          <fieldset class="fgroup"><legend>Drive</legend><div class="chips" id="f-drive"></div></fieldset>
+
+          <div class="fgroup"><label for="f-year">Year from</label><select id="f-year"></select></div>
+          <div class="fgroup"><label for="f-cc">Engine size</label>
+            <select id="f-cc">
+              <option value="0">Any</option><option value="1300">Up to 1300cc</option>
+              <option value="1500">Up to 1500cc</option><option value="1800">Up to 1800cc</option>
+              <option value="2500">Up to 2500cc</option>
+            </select>
+          </div>
+          <fieldset class="fgroup"><legend>Trust level</legend><div class="chips" id="f-trust"></div></fieldset>
+        </aside>
+
+        <div id="results">
+          <div class="toolbar">
+            <p class="count"><b id="result-count">0</b> cars <span id="result-sub" class="sub"></span></p>
+            <label class="sr-only" for="sort">Sort results</label>
+            <select id="sort">
+              <option value="rec">Sort: Best value first</option>
+              <option value="plow">Price: low to high</option>
+              <option value="phigh">Price: high to low</option>
+              <option value="year">Newest year</option>
+              <option value="km">Lowest mileage</option>
+              <option value="run">Cheapest to run</option>
+            </select>
+          </div>
+          <div class="cards" id="cards"></div>
+          <p class="empty" id="empty" hidden><b>Nothing matches those filters.</b><br>Widen your budget or clear a filter to see more cars.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ FINANCE ============================ -->
+  <section class="view" id="view-finance" data-flag="financing" hidden>
+    <div class="wrap">
+      <h2 class="page-title">Financing — what it really costs</h2>
+      <p class="lede">Kenyan car loans are quoted on reducing balance, but the fees are where the money goes. Enter your numbers, then compare lenders on total cost paid, not the headline rate.</p>
+      <div class="two">
+        <div class="panel">
+          <h3>Repayment calculator</h3>
+          <div class="fgroup"><label for="l-price">Car price (KSh)</label><input type="number" id="l-price"></div>
+          <div class="fgroup"><label for="l-deposit">Deposit — <b id="l-deposit-label"></b></label><input type="range" id="l-deposit" min="10" max="70" step="5"></div>
+          <div class="fgroup"><label for="l-term">Term — <b id="l-term-label"></b></label><input type="range" id="l-term" min="12" max="72" step="6"></div>
+          <div class="fgroup"><label for="l-rate">Interest rate p.a. — <b id="l-rate-label"></b></label><input type="range" id="l-rate" min="9" max="45" step="0.5"></div>
+          <div class="fgroup"><label for="l-fee">Arrangement &amp; processing fees (% of loan)</label><input type="number" id="l-fee" value="2.5" step="0.1"></div>
+        </div>
+        <div class="panel">
+          <h3>Your numbers</h3>
+          <p class="big centred" id="l-monthly">—</p>
+          <p class="sub centred">per month</p>
+          <dl class="kv">
+            <div><dt>Deposit you pay today</dt><dd id="l-o1">—</dd></div>
+            <div><dt>Amount financed</dt><dd id="l-o2">—</dd></div>
+            <div><dt>Upfront fees</dt><dd id="l-o3">—</dd></div>
+            <div><dt>Total interest</dt><dd id="l-o4">—</dd></div>
+            <div><dt>Total you pay for the car</dt><dd id="l-o5">—</dd></div>
+            <div><dt>Premium over cash price</dt><dd id="l-o6">—</dd></div>
+          </dl>
+          <div class="banner warn">
+            <b>Also budget for</b>
+            <dl class="kv">
+              <div><dt>Comprehensive insurance, year 1</dt><dd id="l-insurance">—</dd></div>
+              <div><dt>Logbook transfer + NTSA</dt><dd>KSh 5,000 – 15,000</dd></div>
+              <div><dt>Tracker (lender-required)</dt><dd>KSh 15,000 – 25,000</dd></div>
+            </dl>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h3>Who lends for cars in Kenya</h3>
+        <div class="scroll-x">
+          <table>
+            <thead><tr><th>Lender</th><th>Type</th><th>Indicative rate p.a.</th><th>Deposit</th><th>Max term</th><th>Best for</th></tr></thead>
+            <tbody id="lenders"></tbody>
+          </table>
+        </div>
+        <p class="note" id="lenders-note"></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ IMPORT ============================ -->
+  <section class="view" id="view-import" data-flag="importCalc" hidden>
+    <div class="wrap">
+      <h2 class="page-title">Import duty estimator</h2>
+      <p class="lede">Only right-hand-drive vehicles first registered from 1 January 2019 can be cleared into Kenya — the eight-year rule under KS 1515. KRA values used imports against the CRSP schedule, not just your invoice.</p>
+      <div class="two">
+        <div class="panel">
+          <h3>Your import</h3>
+          <div class="fgroup"><label for="i-crsp">CRSP value of the model (KSh)</label><input type="number" id="i-crsp" value="3200000">
+            <p class="note">The KRA benchmark retail price for that model brand-new in Kenya.</p></div>
+          <div class="fgroup"><label for="i-year">Year of first registration</label><select id="i-year"></select></div>
+          <div class="fgroup"><label for="i-cc">Engine size (cc)</label><input type="number" id="i-cc" value="1800"></div>
+          <div class="fgroup"><label for="i-fuel">Fuel</label><select id="i-fuel"><option>Petrol</option><option>Diesel</option><option>Hybrid</option><option>Electric</option></select></div>
+          <div class="fgroup"><label for="i-shipping">Shipping, clearing &amp; agent (KSh)</label><input type="number" id="i-shipping" value="220000"></div>
+        </div>
+        <div class="panel">
+          <h3>Estimated landed cost</h3>
+          <p class="big centred" id="i-total">—</p>
+          <p class="sub centred">on the road in Nairobi</p>
+          <dl class="kv">
+            <div><dt>Depreciated customs value</dt><dd id="i-cv">—</dd></div>
+            <div><dt>Import duty (25%)</dt><dd id="i-duty">—</dd></div>
+            <div><dt>Excise duty (<span id="i-excise-rate">—</span>)</dt><dd id="i-excise">—</dd></div>
+            <div><dt>VAT (16%)</dt><dd id="i-vat">—</dd></div>
+            <div><dt>IDF + RDL</dt><dd id="i-idf">—</dd></div>
+            <div><dt>Total taxes</dt><dd id="i-taxes">—</dd></div>
+            <div><dt>Shipping &amp; clearing</dt><dd id="i-ship">—</dd></div>
+          </dl>
+          <p class="banner" id="i-verdict"></p>
+          <p class="note" id="i-caveat"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ GARAGES ============================ -->
+  <section class="view" id="view-garages" data-flag="garages" hidden>
+    <div class="wrap">
+      <h2 class="page-title">Service &amp; garages near you</h2>
+      <p class="lede">A cheap car with no mechanic within 200km is not a cheap car. Filter by county and by the make you are considering.</p>
+      <div class="toolbar">
+        <label class="sr-only" for="g-county">County</label><select id="g-county"></select>
+        <label class="sr-only" for="g-make">Make</label><select id="g-make"></select>
+        <p class="count"><b id="garage-count">0</b> workshops</p>
+      </div>
+      <div class="cards" id="garages"></div>
+    </div>
+  </section>
+
+  <!-- ============================ VERIFY ============================ -->
+  <section class="view" id="view-verify" data-flag="verify" hidden>
+    <div class="wrap">
+      <h2 class="page-title">Verify before you pay</h2>
+      <p class="lede">Most money lost in Kenyan car buying is lost before anyone drives anything. Run this before you send a deposit.</p>
+      <div class="two">
+        <div class="panel">
+          <h3>Seller risk scanner</h3>
+          <div class="fgroup"><label for="v-reg">Registration number</label><input type="text" id="v-reg" placeholder="KDA 123A"></div>
+          <div class="fgroup"><label for="v-price">Asking price (KSh)</label><input type="number" id="v-price" value="1150000"></div>
+          <div class="fgroup"><label for="v-source">Where did you find it?</label>
+            <select id="v-source">
+              <option>Facebook group / WhatsApp</option><option>Classifieds site</option>
+              <option>Registered dealer yard</option><option>Direct from owner</option>
+            </select>
+          </div>
+          <fieldset class="fgroup"><legend>Seller behaviour</legend><div class="chips" id="v-flags"></div></fieldset>
+          <button class="btn primary wide" id="v-run">Run check</button>
+          <p class="note">This tool can raise suspicion. It can never clear a seller — only an NTSA TIMS search and an independent inspection can do that.</p>
+        </div>
+        <div class="panel">
+          <h3>Result</h3>
+          <div id="v-out"><p class="sub">Fill in the details and run the check.</p></div>
+        </div>
+      </div>
+      <div class="panel">
+        <h3>The eight checks that catch almost every scam</h3>
+        <div id="checks"></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="Car detail" hidden>
+  <div class="sheet" id="sheet"></div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <p><b>GariHakika</b> — know before you buy.</p>
+    <p>Every figure on this site carries a source and a date. Fuel prices come from EPRA and expire in 30 days; duty rules from KRA and KEBS; price bands from our own listing index and are never shown on fewer than three comparable listings.</p>
+    <p><a href="bot.html">About our crawler &amp; opt-out</a> · <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a data-contact href="#">contact</a></p>
+    <p class="note">We are not a lawyer, a financial adviser, or an insurer. Financing and insurance figures are estimates to help you compare — confirm everything in writing with the provider before you commit.</p>
+  </div>
+</footer>
+
+<script>
+const EMBED = {"models":{"_meta":{"description":"Per-model knowledge: fuel economy, parts availability, resale strength, known faults, buyer FAQs.","last_verified":"2026-07-27","expiry_days":180,"grade":"Editorial - see gari-quality-loop content rubric"},"models":{"Toyota Vitz":{"kmpl":18,"parts":"Very cheap & everywhere","resale":5,"faults":["CVT judder if fluid never changed","Front suspension bushes on rough roads","Weak A/C compressor on high-mileage units"],"faqs":[["Is a 1000cc engine too small for Kenyan roads?","It is fine for Nairobi and tarmac highways with two people. Loaded with four adults and luggage on the Nairobi\u2013Naivasha escarpment it will struggle. If you regularly do upcountry runs with a full car, step up to a 1300cc Passo, Demio or an Axio."],["Vitz or Demio for a first car?","Vitz wins on parts availability and resale; almost every mechanic in Kenya knows it. Demio wins on ride quality and interior feel. If you plan to sell within three years, the Vitz gives the money back more predictably."],["What does it cost to run monthly?","Roughly KSh 12,000\u201316,000 in fuel for 1,000km of city driving, plus about KSh 4,500 a month set aside for insurance and KSh 25,000\u201335,000 a year in servicing if nothing breaks."],["Should I worry about the CVT gearbox?","Only if there is no service history. Ask when the CVT fluid was last changed. A judder when pulling away from standstill is the warning sign, and a CVT rebuild is KSh 90,000\u2013180,000 \u2014 more than a quarter of some cars' value."]]},"Toyota Passo":{"kmpl":19,"parts":"Cheap, shared with Daihatsu","resale":4,"faults":["Timing chain rattle on neglected units","Rear beam bushes","Dashboard rattles"],"faqs":[["Passo or Vitz?","Nearly the same car to run. Passo is usually KSh 50,000\u2013120,000 cheaper for the same year and slightly better on fuel; Vitz has a marginally stronger resale market. Buy whichever specific car has the better history."],["Is it safe on the highway?","It is a small light car. It will cruise at 110\u2013120km/h comfortably but crosswinds on the Mombasa road and overtaking loaded trucks demand more planning than in a saloon. Check that it has ABS \u2014 not all imports do."],["How is it in traffic?","Excellent. Light steering, tiny turning circle, and the CVT is smooth in stop-start. It is one of the cheapest cars to sit in Nairobi traffic with."]]},"Mazda Demio":{"kmpl":17,"parts":"Moderate \u2014 some parts ordered in","resale":4,"faults":["Skyactiv models sensitive to fuel quality","Rear brake wear","Infotainment glitches on imported units"],"faqs":[["Are Mazda parts hard to find in Kenya?","Common service items \u2014 filters, pads, bulbs \u2014 are fine in Nairobi and Mombasa. Body panels, sensors and Skyactiv-specific parts often need ordering, which means a week of waiting and a premium. Upcountry this gets worse."],["Is the Skyactiv engine worth it?","It genuinely does 16\u201319km/l and feels quicker than a Vitz. The trade-off is that it is fussier about fuel quality and needs its service intervals respected. Buy one with records."],["Does it hold value?","Less predictably than a Toyota. Expect to lose slightly more on resale, which is the price you pay for a nicer car to drive day to day."]]},"Nissan Note":{"kmpl":18,"parts":"Moderate","resale":3,"faults":["CVT is the known weak point","HR12 supercharged models need premium care","Rear wheel bearings"],"faqs":[["What is the CVT problem I keep hearing about?","Nissan CVTs of this generation fail more often than Toyota's when the fluid is never changed \u2014 and in the Kenyan used market it usually never was. Budget for an immediate fluid change and walk away from any car that shudders or hesitates on a test drive."],["Is it roomier than a Vitz?","Noticeably, yes. Rear legroom and boot space are closer to a small saloon, which is why it sells well to young families. That space is the main reason to choose it."],["Fuel economy in real Nairobi traffic?","Around 13\u201315km/l in heavy traffic, 18+ on the highway. The supercharged DIG-S version is thirstier than its brochure suggests."]]},"Honda Fit":{"kmpl":22,"parts":"Moderate, hybrid parts pricier","resale":3,"faults":["Hybrid battery degradation past 150,000km","DCT gearbox on hybrid models","A/C evaporator"],"faqs":[["What happens when the hybrid battery dies?","Replacement is roughly KSh 120,000\u2013220,000 in Nairobi, or KSh 45,000\u201390,000 for a refurbished pack from a specialist. There are now several Nairobi shops doing this competently \u2014 but almost none in smaller towns. Factor it in if the car has over 140,000km."],["Is a hybrid actually cheaper to run in Kenya?","On fuel, clearly \u2014 20\u201325km/l is real. On total cost, only if you keep it long enough to recover the higher purchase price and you avoid a battery replacement. Above roughly 1,500km a month, it pays."],["Can any mechanic service it?","Routine servicing, yes. Hybrid system faults need a specialist with the right diagnostic tool. Confirm one exists in your town before buying."]]},"Toyota Axio":{"kmpl":17,"parts":"Very cheap & everywhere","resale":5,"faults":["CVT fluid neglect","Front lower arm bushes","Fuel pump on high-mileage units"],"faqs":[["Why is the Axio the default Kenyan car?","It hits the exact middle: saloon comfort, small-car fuel economy, Toyota parts pricing and the strongest resale demand in the market. If you are unsure what to buy and you drive on tarmac, this is the safe answer."],["Axio or Fielder?","Same car mechanically. Fielder is the estate \u2014 far more useful boot, slightly better resale, usually KSh 100,000\u2013200,000 more. If you ever carry anything, buy the Fielder."],["Hybrid Axio \u2014 worth it?","The hybrid does 22\u201326km/l and is superb in traffic, but costs more upfront and adds the battery question. For high-mileage city drivers it pays back; for a weekend car it does not."],["Is it good on rough roads?","Adequate on graded murram, poor on genuinely bad roads \u2014 the ground clearance is low and you will scrape. For upcountry roads look at a Rush, Fielder 4WD or a proper SUV."]]},"Toyota Fielder":{"kmpl":16,"parts":"Very cheap & everywhere","resale":5,"faults":["CVT fluid neglect","Rear shock wear when overloaded","Boot seal leaks on old units"],"faqs":[["Why do so many Kenyans buy the Fielder?","It is the practical compromise everyone converges on: saloon running costs with a boot that swallows luggage, market stalls, or a fridge. Resale is close to bulletproof because demand always exists."],["Is the 4WD version worth the premium?","If you regularly use unpaved roads, yes \u2014 it costs about 8\u201312% more and loses roughly 1km/l. If you are tarmac-only, it is money you will not feel."],["1500cc or 1800cc?","1500cc is cheaper to buy, insure and fuel and is fine for most use. The 1800cc matters if you carry loads or drive the escarpment routinely."],["What mileage is too high?","These engines commonly pass 300,000km. The gearbox and suspension die first. A 250,000km car with records beats a 120,000km car with none \u2014 and odometer tampering is common, so check service stickers and pedal wear against the reading."]]},"Toyota Premio":{"kmpl":14,"parts":"Very cheap & everywhere","resale":4,"faults":["Valvematic actuator on 1800cc","Suspension bushes","Auto tensioner rattle"],"faqs":[["Premio or Axio?","Premio is a size up: quieter, more rear legroom, more presence. It costs more to buy and about 15% more to fuel. Buy it if you carry adults in the back regularly or want a car that looks like more than transport."],["Is the 1800 Valvematic reliable?","Generally yes, but the Valvematic actuator is a known failure point and costs KSh 60,000\u2013110,000. Listen for a rough idle and check that the engine warning light actually comes on and goes off at ignition \u2014 sellers disconnect them."],["Does it work as a taxi?","It is a common upper-tier ride-hail car. The fuel bill is the constraint \u2014 around 12\u201314km/l in city work."]]},"Toyota Probox":{"kmpl":16,"parts":"Cheapest in the market","resale":5,"faults":["Rear leaf springs sag when overloaded","Basic interior wears fast","Front strut mounts"],"faqs":[["Why is the Probox everywhere?","It is the cheapest way in Kenya to move goods reliably. It carries far more than it should, runs on nothing, and every mechanic in every town can fix it with parts from the next street."],["Is it worth buying as a personal car?","Only if you value function absolutely over comfort. It is noisy, sparse and slow. But as a business asset that pays for itself, nothing else comes close."],["What should I check before buying one?","Rear suspension \u2014 most have been overloaded for years. Look for a sagging rear, uneven tyre wear and a rear that sits lower on one side. Also check the load floor for rust."]]},"Toyota Succeed":{"kmpl":15,"parts":"Cheapest in the market","resale":4,"faults":["Same as Probox \u2014 overload damage","Rear leaf springs","Clutch on manual units"],"faqs":[["Succeed or Probox?","Same platform. Succeed is the slightly more comfortable, better-trimmed version \u2014 usually KSh 80,000\u2013200,000 more. If it is a business vehicle, buy the Probox; if it doubles as the family car, buy the Succeed."],["Can it handle upcountry roads?","Yes, and it is used to. The load capacity and simple mechanicals are why it dominates rural commercial use."]]},"Toyota Harrier":{"kmpl":11,"parts":"Moderate to expensive","resale":4,"faults":["Air suspension on older units","Hybrid inverter coolant pump","Rear differential on AWD"],"faqs":[["Is the Harrier expensive to maintain?","Compared with an Axio, materially \u2014 budget KSh 80,000\u2013150,000 a year including tyres, which alone run KSh 60,000\u2013120,000 a set. Parts are Toyota so not exotic, but everything is bigger and pricier."],["Hybrid or petrol Harrier?","The hybrid does 13\u201316km/l against 9\u201311 for the 2.0 petrol, a real saving at Kenyan fuel prices. The counter-argument is the battery, and hybrid-competent workshops are largely a Nairobi phenomenon."],["Is it a proper off-roader?","No. It is a comfortable road SUV with raised ground clearance. It handles murram, park roads and potholes well. For serious 4x4 work you want a Prado, Hilux or Land Cruiser."],["Why do prices vary so widely for the same year?","Grade. A Premium with panoramic roof, JBL and leather can sit KSh 700,000 above a base G on the same year and mileage. Always confirm the exact grade before comparing prices."]]},"Toyota RAV4":{"kmpl":12,"parts":"Moderate","resale":4,"faults":["AWD coupling on neglected units","Infotainment on imports","Brake actuator on hybrid"],"faqs":[["RAV4 or Harrier?","RAV4 is the more practical, slightly more rugged choice with a bigger boot; Harrier is the more luxurious one. In Kenya the Harrier carries more social status and the RAV4 more genuine utility."],["Is it good for game parks and rough roads?","Very capable for murram, park tracks and flooded roads. Not for rock crawling or deep mud without proper tyres."]]},"Nissan X-Trail":{"kmpl":12,"parts":"Moderate","resale":3,"faults":["CVT under load \u2014 the main concern","Timing chain on QR25","Suspension bushes"],"faqs":[["Is the X-Trail's CVT a problem in an SUV?","It is the single biggest reason these depreciate faster than a RAV4. Under load, on hills, in heat \u2014 exactly Kenyan conditions \u2014 the CVT works hard. Insist on a test drive up a real hill and watch for hesitation or a rising engine note without acceleration."],["Why is it cheaper than a RAV4 of the same year?","Market perception of the gearbox, plus weaker parts availability. If you get one with documented CVT servicing, it is genuinely good value."]]},"Subaru Forester":{"kmpl":10,"parts":"Expensive, specialist","resale":3,"faults":["Head gasket on older EJ engines","Turbo units need strict oil discipline","Wheel bearings"],"faqs":[["Are Subarus expensive to run in Kenya?","Yes, relative to Toyota. Fuel is 9\u201311km/l, servicing needs a Subaru-literate mechanic, and parts cost more and sometimes wait. Budget roughly double an equivalent Toyota."],["Is the turbo version a bad idea?","Not inherently, but it punishes neglect. Turbo Foresters that were driven hard on poor oil are common in the used market. Non-turbo NA versions are far less risky for an ordinary owner."],["What is it actually good at?","Genuine symmetrical AWD, high ground clearance and a low centre of gravity \u2014 it is superb on wet murram and rough upcountry roads. That capability is what you are paying for."]]},"Mazda CX-5":{"kmpl":13,"parts":"Moderate to expensive","resale":3,"faults":["Diesel DPF issues in city use","Skyactiv fuel sensitivity","Rear brakes"],"faqs":[["Should I buy the diesel CX-5?","Only if you do long highway runs. Diesel particulate filters clog on short Nairobi trips and a DPF replacement is KSh 150,000+. For city driving, take the petrol."],["How does it compare with a RAV4?","Better to drive and better finished; weaker on parts availability and resale. A driver's choice rather than the safe choice."]]},"Toyota Land Cruiser Prado":{"kmpl":8,"parts":"Expensive but available","resale":5,"faults":["KDSS system leaks","Injector wear on diesel with poor fuel","Air suspension on high grades"],"faqs":[["What does a Prado really cost to run?","Fuel alone is KSh 25,000\u201340,000 a month for moderate use. Tyres are KSh 100,000\u2013200,000 a set, insurance on a KSh 7M vehicle is KSh 250,000\u2013300,000 a year, and a major service is KSh 60,000\u2013120,000. It is a KSh 500,000-a-year car before anything breaks."],["Diesel or petrol Prado?","Diesel, almost always \u2014 better economy, far better torque for load and altitude, and stronger resale. The caveat is fuel quality; use reputable stations and change filters on schedule."],["Is it worth it over a Harrier?","If you actually go where a Harrier cannot \u2014 parks, ranches, deep upcountry, floods \u2014 yes. If you drive Nairobi tarmac and want space, you are paying a large premium for capability you will never use."],["Why do Prados hold value so well?","Constant demand from NGOs, government, tour operators and upcountry buyers, plus a reputation for surviving abuse. It is one of the few vehicles in Kenya you can treat as a store of value."]]},"Toyota Hilux":{"kmpl":11,"parts":"Cheap & everywhere","resale":5,"faults":["Injector and turbo wear on poor fuel","Leaf springs when overloaded","Clutch on manual units"],"faqs":[["Double cab or single cab?","Double cab if it doubles as family transport, single cab if it is purely a work vehicle \u2014 the single cab carries more and costs less. Double cabs resell faster."],["Is it comfortable enough as a daily car?","Modern double cabs are, largely. An unladen pick-up rides firmly at the rear because the suspension is designed for load, which is noticeable on Nairobi speed bumps."],["Why is it so expensive used?","Because it barely depreciates. Farms, NGOs, construction and county governments all compete for the same used stock."]]},"Isuzu D-Max":{"kmpl":11,"parts":"Cheap, strong local dealer network","resale":4,"faults":["EGR clogging","Suspension bushes under load","Turbo actuator"],"faqs":[["D-Max or Hilux?","Isuzu has the stronger local truck heritage in Kenya and Isuzu East Africa's dealer network is excellent upcountry. Hilux has broader used demand and resells faster. Both are correct answers."],["Is it good for a small business?","It is one of the most common working vehicles in the country for a reason \u2014 parts, service and finance are all easy to arrange."]]},"Toyota Noah":{"kmpl":12,"parts":"Cheap & everywhere","resale":4,"faults":["Sliding door mechanism","CVT on newer units","Rear A/C blower"],"faqs":[["Noah, Voxy or Alphard?","Noah and Voxy are the same van with different styling \u2014 Voxy is the sportier trim and slightly pricier. Alphard is a size and class above, with luxury pricing and running costs to match."],["Is it a good family car for Kenya?","One of the best. Eight seats, sliding doors that survive tight parking, tarmac-friendly ride and Toyota running costs. The compromise is ground clearance and it is not an off-roader."],["What is the catch?","Fuel at 11\u201313km/l with a full load, and it is a big vehicle in Nairobi traffic. Also check the sliding door mechanism carefully \u2014 repairs are fiddly and not cheap."]]},"Toyota Sienta":{"kmpl":16,"parts":"Cheap & everywhere","resale":4,"faults":["Sliding door sensors","CVT fluid neglect","Suspension on rough roads"],"faqs":[["Is a Sienta a real 7-seater?","It seats seven, but the third row is for children or short trips. With all seven seats up there is almost no boot. As a five-seater with occasional extra seats it is excellent."],["Sienta or Noah?","Sienta is much cheaper to buy and run and far easier to park; Noah is a genuinely bigger vehicle. If you need seven adult seats regularly, buy the Noah."]]},"Nissan Leaf":{"kmpl":0,"parts":"Specialist, Nairobi only","resale":2,"faults":["Battery degradation \u2014 check state of health","No active battery cooling on older units","Charging port compatibility"],"faqs":[["Can I actually live with an EV in Kenya?","In Nairobi, increasingly yes \u2014 home charging on a normal socket plus a growing public network. Outside Nairobi, plan carefully. Real-world range on an older Leaf is often 110\u2013160km, not the brochure figure."],["What does charging cost versus petrol?","Roughly KSh 700\u20131,200 for a full charge at home tariffs against KSh 5,000+ for an equivalent tank of petrol. The running-cost saving is dramatic; the risk sits entirely in the battery."],["How do I check the battery?","Ask for the state-of-health reading \u2014 the dashboard shows capacity bars, and a proper diagnostic gives a percentage. Below about 75% health, discount the car heavily. A replacement pack is prohibitive in Kenya."],["Do I pay less duty on an EV?","Excise duty on electric vehicles is lower than on petrol equivalents, which is why landed EV prices are increasingly competitive. Confirm current rates with KRA before importing."]]},"Honda Vezel":{"kmpl":18,"parts":"Moderate, hybrid specialist needed","resale":3,"faults":["7-speed DCT gearbox \u2014 the known issue","Hybrid battery on high mileage","Electric parking brake"],"faqs":[["What is the DCT problem?","The dual-clutch gearbox on the hybrid can judder and, in bad cases, fail \u2014 repairs run into the hundreds of thousands. Test drive in stop-start traffic specifically and feel for hesitation at low speed."],["Is it a good buy despite that?","It is a stylish, very economical compact SUV at a price a Harrier cannot match. Buy one with a clean service history and a smooth test drive, or buy the non-hybrid."]]},"Suzuki Alto":{"kmpl":24,"parts":"Cheap but thinner network","resale":3,"faults":["Light body panels dent easily","Suspension on rough roads","Small brakes"],"faqs":[["Is it too small to be safe?","It is the smallest thing on a road full of matatus and lorries. Physics is not on your side. If you buy one, insist on a version with ABS and airbags and treat highway driving with respect."],["What is the appeal?","Cost. It is the cheapest car in Kenya to buy, fuel, insure and park \u2014 genuinely 22\u201326km/l. For a short urban commute on a tight budget, nothing beats it."]]},"Toyota Wish":{"kmpl":13,"parts":"Cheap & everywhere","resale":3,"faults":["Suspension sag with load","A/C blower","Timing chain on 1ZZ"],"faqs":[["Is the Wish still worth buying?","Production ended years ago, so every one on sale is locally used and aging. They are cheap seven-seaters with Toyota parts, which keeps demand alive, but you are buying an old car \u2014 condition matters far more than year."],["Wish or Sienta?","Sienta is newer, more economical and easier to import legally under the 8-year rule. The Wish is cheaper and lower to the ground with a nicer drive. For most buyers now, Sienta."]]},"Mercedes-Benz C200":{"kmpl":11,"parts":"Expensive, specialist","resale":2,"faults":["Air suspension","Turbo and timing chain on M274","Electronic gremlins on high mileage"],"faqs":[["Can I afford a used Mercedes in Kenya?","The purchase price is the cheap part. Budget KSh 200,000\u2013400,000 a year in maintenance, and single repairs can exceed KSh 300,000. Buyers get caught out by exactly this \u2014 the car is affordable, ownership is not."],["Where do I service it?","Either the authorised dealer at premium rates or one of a handful of trusted independent German-car specialists in Nairobi. Outside Nairobi and Mombasa, effectively nowhere."],["Why is depreciation so steep?","Small buyer pool, high repair fear and expensive parts. Great news if you are buying, painful if you are selling."]]},"BMW 320i":{"kmpl":12,"parts":"Expensive, specialist","resale":2,"faults":["N20 timing chain \u2014 critical check","Turbo oil feed lines","Electric water pump"],"faqs":[["What is the timing chain issue?","Certain N20 four-cylinder engines suffered premature timing chain guide wear that can destroy the engine. Confirm whether the chain has been replaced \u2014 it is a KSh 250,000+ job and the single most important question on this car."],["Is it a sensible Kenyan purchase?","Rationally, no \u2014 running costs and parts lead times are high and resale is weak. Emotionally it is a wonderful car to drive. Go in with eyes open and a maintenance fund."]]},"Toyota Hiace":{"kmpl":10,"parts":"Cheapest commercial parts","resale":5,"faults":["Overload damage to rear suspension","Clutch wear","Injector wear on diesel"],"faqs":[["Is a Hiace a good business investment?","It is the backbone of Kenyan public and staff transport. With a route or a contract it pays back quickly. Without one, it is a large depreciating asset with high fixed costs \u2014 PSV licensing, insurance and compliance are all substantially more expensive than private."],["Diesel or petrol?","Diesel, for the economy and torque under load. Nearly all commercial operators run diesel for this reason."],["What about PSV insurance?","PSV cover is dramatically more expensive than private cover and priced per seat. Get a quote before you buy, not after."]]},"Toyota Land Cruiser V8":{"kmpl":6,"parts":"Expensive but available","resale":5,"faults":["Air suspension compressor","Injectors on poor fuel","Front diff on hard use"],"faqs":[["What is the real cost of ownership?","Fuel at 5\u20137km/l means KSh 50,000\u201390,000 a month for regular use. Insurance on an KSh 11M vehicle is KSh 380,000+ a year. Tyres are KSh 200,000+ a set. This is a KSh 1M-a-year vehicle."],["Why do they hold value so strongly?","Persistent demand from government, NGOs, security firms and tour operators, and a genuine reputation for going anywhere and lasting decades."]]},"Toyota Rush":{"kmpl":14,"parts":"Cheap & everywhere","resale":4,"faults":["Firm ride on rough roads","Rear axle noise on high mileage","Basic sound insulation"],"faqs":[["Is the Rush a real SUV?","It has body-on-frame construction and good ground clearance, so it handles murram and rough roads far better than a crossover. It is not a serious 4x4 and most units sold are 2WD \u2014 check which you are buying."],["Rush or a used Harrier for the same money?","Rush gives you a newer car, seven seats and cheap running costs. Harrier gives you comfort, refinement and status in an older vehicle. For rough roads and low running costs, the Rush is the more rational buy."]]}}},"market":{"_meta":{"description":"Volatile market facts. Every figure here has an expiry window; the content audit fails the build when one is stale.","last_verified":"2026-07-27"},"fuel":{"petrol_kes_per_litre":214.03,"diesel_kes_per_litre":222.86,"kerosene_kes_per_litre":191.38,"region":"Nairobi","cycle_ends":"2026-08-14","source":"EPRA","grade":"Confirmed","expiry_days":30},"insurance":{"comprehensive_rate_min":0.03,"comprehensive_rate_max":0.075,"minimum_premium_kes":37500,"bands":[{"value_max":1000000,"rate_min":0.06,"rate_max":0.075},{"value_max":1500000,"rate_min":0.035,"rate_max":0.05},{"value_max":2500000,"rate_min":0.035,"rate_max":0.045},{"value_max":null,"rate_min":0.035,"rate_max":0.0425}],"source":"Insurers / IRA","grade":"Reported","expiry_days":180},"import":{"age_rule":"KS 1515 eight-year rule","first_registration_from":"2019-01-01","effective":"2026-01-01","drive_side":"Right-hand drive only","crsp_schedule_effective":"2025-07-01","duty":{"import_duty":0.25,"vat":0.16,"idf":0.035,"rdl":0.02,"excise_le_1500cc":0.2,"excise_gt_1500cc":0.25,"excise_gt_3000cc_petrol_or_2500cc_diesel":0.35,"excise_electric":0.1},"depreciation_by_age_years":[0.05,0.2,0.3,0.4,0.5,0.55,0.6,0.65],"source":"KRA / KEBS","grade":"Reported - verify against KRA before relying on any figure","expiry_days":90},"assumptions":{"monthly_km":1200,"default_loan_rate_pa":15,"default_deposit_pct":30,"default_term_months":48,"ev_kwh_per_km":0.18,"electricity_kes_per_kwh":28,"grade":"Estimate - stated assumptions, not measured"}},"finance":{"_meta":{"description":"Kenyan vehicle lenders. Indicative ranges that move with the CBK rate.","last_verified":"2026-07-27","expiry_days":90,"source":"Lender published pages and market reporting","grade":"Reported"},"lenders":[{"name":"KCB Bank","type":"Bank","rate":"13% \u2013 15.5%","deposit":"20% \u2013 30%","max_term":"60 months","best_for":"Salaried buyers with a KCB account; largest branch reach"},{"name":"Stanbic Bank","type":"Bank","rate":"~14.5%","deposit":"20%","max_term":"48 \u2013 60 months","best_for":"Imports \u2014 finances up to 80% including the import process"},{"name":"Absa Kenya","type":"Bank","rate":"13.5% \u2013 16%","deposit":"20% \u2013 30%","max_term":"60 months","best_for":"Dealer-partnered new car deals"},{"name":"Family Bank","type":"Bank","rate":"14% \u2013 17%","deposit":"25% \u2013 30%","max_term":"48 months","best_for":"Small business and SME vehicle purchases"},{"name":"NCBA","type":"Bank","rate":"13.5% \u2013 16.5%","deposit":"20% \u2013 30%","max_term":"60 months","best_for":"Large asset finance book; strong on fleets"},{"name":"SACCOs (Stima, Mwalimu, Harambee)","type":"SACCO","rate":"12% \u2013 14%","deposit":"Varies","max_term":"48 \u2013 60 months","best_for":"Members \u2014 usually the cheapest credit in the market"},{"name":"Mogo Kenya","type":"Non-bank","rate":"Effective ~28% \u2013 40%","deposit":"10% \u2013 30%","max_term":"up to 48 months","best_for":"Speed and low deposit when banks say no"},{"name":"Watu Gari","type":"Non-bank","rate":"Effective ~30% \u2013 45%","deposit":"10% \u2013 20%","max_term":"up to 36 months","best_for":"First-time buyers with limited savings and no payslip"},{"name":"Ngao Credit","type":"Non-bank","rate":"Effective ~30% \u2013 42%","deposit":"20% \u2013 30%","max_term":"up to 36 months","best_for":"Logbook loans and quick asset finance"},{"name":"Mwananchi Credit","type":"Non-bank","rate":"Effective ~30% \u2013 45%","deposit":"20% \u2013 30%","max_term":"up to 24 months","best_for":"Emergency and short-term logbook lending"}]},"garages":{"_meta":{"description":"Service centres and inspection providers by county.","last_verified":"2026-07-27","expiry_days":180,"grade":"Reported"},"garages":[{"name":"Toyota Kenya Service Centre \u2014 Uhuru Highway","county":"Nairobi","city":"Nairobi","make":"Toyota","type":"Franchise","speciality":"Genuine parts, warranty work, diagnostics","typical_cost":"KSh 12,000 \u2013 25,000 minor service"},{"name":"CFAO Motors Mombasa","county":"Mombasa","city":"Mombasa","make":"Toyota","type":"Franchise","speciality":"Coast region franchise service and imports","typical_cost":"KSh 12,000 \u2013 24,000 minor service"},{"name":"Isuzu East Africa \u2014 Nakuru","county":"Nakuru","city":"Nakuru","make":"Isuzu","type":"Franchise","speciality":"Commercial vehicle service, strong upcountry reach","typical_cost":"KSh 15,000 \u2013 30,000"},{"name":"Auto Doctors Industrial Area","county":"Nairobi","city":"Nairobi","make":"All Japanese","type":"Independent","speciality":"Diagnostics, engine and gearbox overhaul","typical_cost":"KSh 6,000 \u2013 15,000 minor service"},{"name":"Hybrid & EV Tech Nairobi","county":"Nairobi","city":"Nairobi","make":"Hybrid / EV","type":"Specialist","speciality":"Hybrid battery health testing, pack refurbishment","typical_cost":"KSh 3,500 diagnostic; KSh 45,000+ pack refurb"},{"name":"Boxer Garage Kilimani","county":"Nairobi","city":"Nairobi","make":"Subaru","type":"Specialist","speciality":"Subaru EJ/FB engines, head gaskets, turbo work","typical_cost":"KSh 9,000 \u2013 20,000"},{"name":"German Auto Werk Karen","county":"Nairobi","city":"Nairobi","make":"Mercedes / BMW","type":"Specialist","speciality":"European diagnostics and electronics","typical_cost":"KSh 15,000 \u2013 35,000"},{"name":"Nyali Auto Care","county":"Mombasa","city":"Mombasa","make":"All makes","type":"Independent","speciality":"Coastal rust treatment, A/C specialists","typical_cost":"KSh 5,000 \u2013 12,000"},{"name":"Kisumu Motor Works","county":"Kisumu","city":"Kisumu","make":"All makes","type":"Independent","speciality":"General repair, suspension, lakeside fleet service","typical_cost":"KSh 4,500 \u2013 11,000"},{"name":"Eldoret Highlands Garage","county":"Uasin Gishu","city":"Eldoret","make":"Toyota / Isuzu","type":"Independent","speciality":"Pick-up and 4x4 suspension, farm fleet contracts","typical_cost":"KSh 5,000 \u2013 14,000"},{"name":"Nakuru Auto Clinic","county":"Nakuru","city":"Nakuru","make":"All makes","type":"Independent","speciality":"Rift Valley general service, pre-purchase inspections","typical_cost":"KSh 4,500 \u2013 12,000"},{"name":"Thika Road Motor Centre","county":"Kiambu","city":"Thika","make":"All makes","type":"Independent","speciality":"High-volume servicing, CVT fluid specialists","typical_cost":"KSh 4,000 \u2013 10,000"},{"name":"Nyeri Central Garage","county":"Nyeri","city":"Nyeri","make":"All makes","type":"Independent","speciality":"Mount Kenya region general repair","typical_cost":"KSh 4,000 \u2013 10,000"},{"name":"Machakos Motor Services","county":"Machakos","city":"Machakos","make":"Toyota commercial","type":"Independent","speciality":"Probox / Succeed suspension and load repair","typical_cost":"KSh 3,500 \u2013 9,000"},{"name":"AA Kenya Inspection \u2014 Nairobi","county":"Nairobi","city":"Nairobi","make":"All makes","type":"Inspection","speciality":"Independent pre-purchase inspection and valuation","typical_cost":"KSh 5,500 \u2013 9,000 per inspection"},{"name":"AA Kenya Inspection \u2014 Mombasa","county":"Mombasa","city":"Mombasa","make":"All makes","type":"Inspection","speciality":"Pre-purchase inspection and import verification","typical_cost":"KSh 5,500 \u2013 9,000 per inspection"}]},"checks":{"_meta":{"description":"Pre-purchase verification checklist.","last_verified":"2026-07-27","expiry_days":90,"source":"NTSA guidance and reported fraud patterns","grade":"Reported"},"checks":[{"title":"Run the registration through NTSA TIMS","detail":"tims.ntsa.go.ke shows the registered owner, whether there is a logbook charge (a lender's claim on the car), and the compliance status. If the name does not match the seller's ID, stop. A car under a logbook loan cannot be legally transferred until the lender releases it.","severity":"red"},{"title":"Match the seller's ID to the logbook name","detail":"Ask for a physical ID and photograph it. Brokers selling on behalf of an owner must show written authority. 'My uncle is abroad' is the oldest line in the Kenyan car market.","severity":"red"},{"title":"Pay for an independent pre-purchase inspection","detail":"KSh 5,000\u20139,000 with AA Kenya or a trusted garage. Any seller who resists an inspection they do not control is telling you something. This single step prevents most expensive mistakes.","severity":"red"},{"title":"Compare the asking price against the model band","detail":"A price far below the market band is not a bargain \u2014 it is the bait in almost every advance-fee scam. Our price band shows you the honest range for that model, year and mileage.","severity":"amber"},{"title":"Reverse-image-search the photos","detail":"Stolen photo sets are recycled across Facebook groups and classifieds. If the same images appear under other phone numbers or on Japanese auction sites, walk away.","severity":"amber"},{"title":"Never pay a deposit to hold a car you have not seen","detail":"'Three other buyers are coming today' is a manufactured deadline. Real dealers with real stock will let you come and look. Urgency is the scam, not the car.","severity":"red"},{"title":"Pay traceably and never in full cash","detail":"Bank transfer or documented mobile money. Cash in a car park leaves you no recourse. For private sales, complete payment and transfer at the buyer's bank where possible.","severity":"amber"},{"title":"Complete the NTSA transfer immediately, not 'later'","detail":"Until the transfer is done you are not the owner and remain exposed to the seller's liabilities. NTSA's digital e-logbook rollout in 2026 makes forged books far harder \u2014 insist on the digital record, not a paper promise.","severity":"amber"}]},"listings":{"_meta":{"description":"SAMPLE DATA for development only. Overwritten by pipeline output once a real crawl has run and passed the quality gate. The site displays a banner whenever is_sample is true.","is_sample":true,"generated":"2026-07-27","count":40},"listings":[{"id":1,"make":"Toyota","model":"Vitz","year":2019,"price":1180000,"cond":"Foreign used","km":62000,"cc":1000,"fuel":"Petrol","trans":"Automatic","drive":"2WD","body":"Hatchback","seats":5,"county":"Mombasa","city":"Mombasa","dealer":"Coast Auto Bazaar","dtype":"Import yard","trust":"Verified","band":[1050000,1350000]},{"id":2,"make":"Toyota","model":"Vitz","year":2015,"price":720000,"cond":"Locally used","km":118000,"cc":1300,"fuel":"Petrol","trans":"Automatic","drive":"2WD","body":"Hatchback","seats":5,"county":"Nairobi","city":"Nairobi","dealer":"Ngong Road Motors","dtype":"Dealer","trust":"Inspected","band":[650000,900000]},{"id":3,"make":"Toyota","model":"Passo","year":2019,"price":1040000,"cond":"Foreign used","km":48000,"cc":1000,"fuel":"Petrol","trans":"Automatic","drive":"2WD","body":"Hatchback","seats":5,"county":"Mombasa","city":"Mombasa","dealer":"Bandari Motors","dtype":"Import yard","trust":"Verified","band":[980000,1250000]},{"id":4,"make":"Mazda","model":"Demio","year":2019,"price":1195000,"cond":"Foreign used","km":55000,"cc":1300,"fuel":"Petrol","trans":"Automatic","drive":"2WD","body":"Hatchback","seats":5,"county":"Nairobi","city":"Nairobi","dealer":"Westlands Auto Hub","dtype":"Dealer","trust":"Verified","band":[1080000,1450000]},{"id":5,"make":"Mazda","model":"Demio","year":2016,"price":845000,"cond":"Locally used","km":132000,"cc":1300,"fuel":"Petrol","trans":"Automatic","drive":"2WD","body":"Hatchback","seats":5,"county":"Nakuru","city":"Nakuru","dealer":"Rift Valley Cars","dtype":"Dealer","trust":"Inspected","band":[780000,980000]},{"id":6,"make":"Nissan","model":"Note","year":2019,"price":1230000,"cond":"Foreign used","km":41000,"cc":1200,"fuel":"Petrol","trans":"Automatic","drive":"2WD","body":"Hatchback","seats":5,"county":"Nairobi","city":"Nairobi","dealer":"Mombasa Road Autos","dtype":"Import yard","trust":"Verified","band":[1100000,1500000]},{"id":7,"make":"Honda","model":"Fit","year":2019,"price":1420000,"cond":"Foreign used","km":58000,"cc":1500,"fuel":"Hybrid","trans":"Automatic","drive":"2WD","body":"Hatchback","seats":5,"county":"Nairobi","city":"Nairobi","dealer":"Green Motors Kenya","dtype":"Dealer","trust":"Inspected","band":[1280000,1650000]},{"id":8,"make":"Toyota","model":"Axio","year":2019,"price":1690000,"cond":"Foreign used","km":47000,"cc":1500,"fuel":"Petrol","trans":"Automatic","drive":"2WD","body":"Saloon","seats":5,"county":"Nairobi","city":"Nairobi","dealer":"Mombasa Road Autos","dtype":"Import yard","trust":"Verified","band":[1550000,1950000]},{"id":9,"make":"Toyota","model":"Axio","year":2015,"price":1145000,"cond":"Locally used","km":141000,"cc":1500,"fuel":"Petrol","trans":"Automatic","drive":"2WD","body":"Saloon","seats":5,"county":"Kisumu","city":"Kisumu","dealer":"Lakeside Auto Mart","dtype":"Dealer","trust":"Inspected","band":[1050000,1350000]},{"id":10,"make":"Toyota","model":"Axio","year":2019,"price":1880000,"cond":"Foreign used","km":39000,"cc":1500,"fuel":"Hybrid","trans":"Automatic","drive":"2WD","body":"Saloon","seats":5,"county":"Nairobi","city":"Nairobi","dealer":"Green Motors Kenya","dtype":"Dealer","trust":"Verified","band":[1750000,2100000]},{"id":11,"make":"Toyota","model":"Fielder","year":2019,"price":1810000,"cond":"Foreign used","km":52000,"cc":1500,"fuel":"Petrol","trans":"Automatic","drive":"2WD","body":"Station wagon","seats":5,"county":"Mombasa","city":"Mombasa","dealer":"Coast Auto Bazaar","dtype":"Import yard","trust":"Verified","band":[1650000,2050000]},{"id":12,"make":"Toyota","model":"Fielder","year":2016,"price":1340000,"cond":"Locally used","km":128000,"cc":1500,"fuel":"Petrol","trans":"Automatic","drive":"4WD","body":"Station wagon","seats":5,"county":"Uasin Gishu","city":"Eldoret","dealer":"Highlands Motors","dtype":"Dealer","trust":"Inspected","band":[1250000,1550000]},{"id":13,"make":"Toyota","model":"Fielder","year":2014,"price":1090000,"cond":"Locally used","km":186000,"cc":1500,"fuel":"Petrol","trans":"Automatic","drive":"2WD","body":"Station wagon","seats":5,"county":"Kiambu","city":"Thika","dealer":"Thika Road Car Centre","dtype":"Dealer","trust":"Unverified","band":[980000,1250000]},{"id":14,"make":"Toyota","model":"Premio","year":2019,"price":2380000,"cond":"Foreign used","km":44000,"cc":1800,"fuel":"Petrol","trans":"Automatic","drive":"2WD","body":"Saloon","seats":5,"county":"Nairobi","city":"Nairobi","dealer":"Westlands Auto Hub","dtype":"Dealer","trust":"Verified","band":[2200000,2750000]},{"id":15,"make":"Toyota","model":"Premio","year":2015,"price":1590000,"cond":"Locally used","km":149000,"cc":1800,"fuel":"Petrol","trans":"Automatic","drive":"2WD","body":"Saloon","seats":5,"county":"Nyeri","city":"Nyeri","dealer":"Mount Kenya Autos","dtype":"Dealer","trust":"Inspected","band":[1450000,1800000]},{"id":16,"make":"Toyota","model":"Probox","year":2019,"price":1430000,"cond":"Foreign used","km":61000,"cc":1500,"fuel":"Petrol","trans":"Automatic","drive":"2WD","body":"Van","seats":5,"county":"Mombasa","city":"Mombasa","dealer":"Bandari Motors","dtype":"Import yard","trust":"Verified","band":[1300000,1650000]},{"id":17,"make":"Toyota","model":"Probox","year":2014,"price":760000,"cond":"Locally used","km":232000,"cc":1500,"fuel":"Petrol","trans":"Automatic","drive":"2WD","body":"Van","seats":5,"county":"Machakos","city":"Machakos","dealer":"Kangundo Road Motors","dtype":"Broker","trust":"Unverified","band":[680000,920000]},{"id":18,"make":"Toyota","model":"Succeed","year":2019,"price":1540000,"cond":"Foreign used","km":57000,"cc":1500,"fuel":"Petrol","trans":"Automatic","drive":"2WD","body":"Van","seats":5,"county":"Kisumu","city":"Kisumu","dealer":"Lakeside Auto Mart","dtype":"Dealer","trust":"Inspected","band":[1400000,1750000]},{"id":19,"make":"Toyota","model":"Sienta","year":2019,"price":1930000,"cond":"Foreign used","km":46000,"cc":1500,"fuel":"Petrol","trans":"Automatic","drive":"2WD","body":"MPV","seats":7,"county":"Nairobi","city":"Nairobi","dealer":"Family Auto Kenya","dtype":"Dealer","trust":"Verified","band":[1800000,2300000]},{"id":20,"make":"Toyota","model":"Noah","year":2019,"price":2950000,"cond":"Foreign used","km":53000,"cc":2000,"fuel":"Petrol","trans":"Automatic","drive":"2WD","body":"MPV","seats":8,"county":"Nairobi","city":"Nairobi","dealer":"Family Auto Kenya","dtype":"Dealer","trust":"Verified","band":[2750000,3400000]},{"id":21,"make":"Toyota","model":"Wish","year":2015,"price":1480000,"cond":"Locally used","km":165000,"cc":1800,"fuel":"Petrol","trans":"Automatic","drive":"2WD","body":"MPV","seats":7,"county":"Kiambu","city":"Ruiru","dealer":"Ruiru Auto Yard","dtype":"Broker","trust":"Unverified","band":[1350000,1700000]},{"id":22,"make":"Toyota","model":"Rush","year":2019,"price":2640000,"cond":"Foreign used","km":49000,"cc":1500,"fuel":"Petrol","trans":"Automatic","drive":"2WD","body":"SUV","seats":7,"county":"Nakuru","city":"Nakuru","dealer":"Rift Valley Cars","dtype":"Dealer","trust":"Verified","band":[2450000,2950000]},{"id":23,"make":"Toyota","model":"Harrier","year":2019,"price":4680000,"cond":"Foreign used","km":51000,"cc":2000,"fuel":"Petrol","trans":"Automatic","drive":"2WD","body":"SUV","seats":5,"county":"Nairobi","city":"Nairobi","dealer":"Karen Prestige Motors","dtype":"Dealer","trust":"Verified","band":[4300000,5400000]},{"id":24,"make":"Toyota","model":"Harrier","year":2015,"price":3390000,"cond":"Locally used","km":122000,"cc":2000,"fuel":"Petrol","trans":"Automatic","drive":"AWD","body":"SUV","seats":5,"county":"Nairobi","city":"Nairobi","dealer":"Lang'ata Auto Select","dtype":"Dealer","trust":"Inspected","band":[3100000,3900000]},{"id":25,"make":"Toyota","model":"RAV4","year":2019,"price":3840000,"cond":"Foreign used","km":47000,"cc":2000,"fuel":"Petrol","trans":"Automatic","drive":"AWD","body":"SUV","seats":5,"county":"Mombasa","city":"Mombasa","dealer":"Coast Auto Bazaar","dtype":"Import yard","trust":"Verified","band":[3600000,4400000]},{"id":26,"make":"Nissan","model":"X-Trail","year":2019,"price":3180000,"cond":"Foreign used","km":58000,"cc":2000,"fuel":"Petrol","trans":"Automatic","drive":"AWD","body":"SUV","seats":7,"county":"Nairobi","city":"Nairobi","dealer":"Mombasa Road Autos","dtype":"Import yard","trust":"Inspected","band":[2950000,3700000]},{"id":27,"make":"Subaru","model":"Forester","year":2019,"price":3520000,"cond":"Foreign used","km":54000,"cc":2000,"fuel":"Petrol","trans":"Automatic","drive":"AWD","body":"SUV","seats":5,"county":"Nairobi","city":"Nairobi","dealer":"Boxer Auto Kenya","dtype":"Dealer","trust":"Inspected","band":[3300000,4100000]},{"id":28,"make":"Mazda","model":"CX-5","year":2019,"price":3290000,"cond":"Foreign used","km":61000,"cc":2200,"fuel":"Diesel","trans":"Automatic","drive":"AWD","body":"SUV","seats":5,"county":"Nairobi","city":"Nairobi","dealer":"Westlands Auto Hub","dtype":"Dealer","trust":"Verified","band":[3050000,3800000]},{"id":29,"make":"Honda","model":"Vezel","year":2019,"price":2610000,"cond":"Foreign used","km":50000,"cc":1500,"fuel":"Hybrid","trans":"Automatic","drive":"2WD","body":"SUV","seats":5,"county":"Nairobi","city":"Nairobi","dealer":"Green Motors Kenya","dtype":"Dealer","trust":"Inspected","band":[2450000,3050000]},{"id":30,"make":"Nissan","model":"Leaf","year":2019,"price":1940000,"cond":"Foreign used","km":44000,"cc":0,"fuel":"Electric","trans":"Automatic","drive":"2WD","body":"Hatchback","seats":5,"county":"Nairobi","city":"Nairobi","dealer":"Volt Motors Kenya","dtype":"Dealer","trust":"Verified","band":[1750000,2400000]},{"id":31,"make":"Suzuki","model":"Alto","year":2019,"price":880000,"cond":"Foreign used","km":39000,"cc":660,"fuel":"Petrol","trans":"Automatic","drive":"2WD","body":"Hatchback","seats":4,"county":"Nairobi","city":"Nairobi","dealer":"Ngong Road Motors","dtype":"Dealer","trust":"Inspected","band":[820000,1050000]},{"id":32,"make":"Toyota","model":"Land Cruiser Prado","year":2019,"price":7480000,"cond":"Foreign used","km":62000,"cc":2800,"fuel":"Diesel","trans":"Automatic","drive":"4WD","body":"SUV","seats":7,"county":"Nairobi","city":"Nairobi","dealer":"Karen Prestige Motors","dtype":"Dealer","trust":"Verified","band":[6900000,8800000]},{"id":33,"make":"Toyota","model":"Land Cruiser V8","year":2019,"price":11400000,"cond":"Foreign used","km":68000,"cc":4500,"fuel":"Diesel","trans":"Automatic","drive":"4WD","body":"SUV","seats":7,"county":"Nairobi","city":"Nairobi","dealer":"Karen Prestige Motors","dtype":"Dealer","trust":"Verified","band":[10500000,13500000]},{"id":34,"make":"Toyota","model":"Hilux","year":2019,"price":4520000,"cond":"Foreign used","km":71000,"cc":2400,"fuel":"Diesel","trans":"Manual","drive":"4WD","body":"Pick-up","seats":5,"county":"Uasin Gishu","city":"Eldoret","dealer":"Highlands Motors","dtype":"Dealer","trust":"Verified","band":[4200000,5300000]},{"id":35,"make":"Isuzu","model":"D-Max","year":2019,"price":4180000,"cond":"Foreign used","km":76000,"cc":2500,"fuel":"Diesel","trans":"Manual","drive":"4WD","body":"Pick-up","seats":5,"county":"Nakuru","city":"Nakuru","dealer":"Rift Valley Cars","dtype":"Dealer","trust":"Inspected","band":[3900000,4900000]},{"id":36,"make":"Toyota","model":"Hiace","year":2019,"price":4460000,"cond":"Foreign used","km":88000,"cc":2800,"fuel":"Diesel","trans":"Manual","drive":"2WD","body":"Van","seats":14,"county":"Nairobi","city":"Nairobi","dealer":"Matatu Sacco Motors","dtype":"Dealer","trust":"Inspected","band":[4100000,5200000]},{"id":37,"make":"Mercedes-Benz","model":"C200","year":2019,"price":4780000,"cond":"Foreign used","km":56000,"cc":1500,"fuel":"Petrol","trans":"Automatic","drive":"2WD","body":"Saloon","seats":5,"county":"Nairobi","city":"Nairobi","dealer":"Karen Prestige Motors","dtype":"Dealer","trust":"Verified","band":[4400000,5600000]},{"id":38,"make":"BMW","model":"320i","year":2019,"price":3920000,"cond":"Foreign used","km":63000,"cc":2000,"fuel":"Petrol","trans":"Automatic","drive":"2WD","body":"Saloon","seats":5,"county":"Nairobi","city":"Nairobi","dealer":"Lang'ata Auto Select","dtype":"Dealer","trust":"Unverified","band":[3700000,4700000]},{"id":39,"make":"Toyota","model":"Vitz","year":2019,"price":690000,"cond":"Foreign used","km":31000,"cc":1000,"fuel":"Petrol","trans":"Automatic","drive":"2WD","body":"Hatchback","seats":5,"county":"Nairobi","city":"Nairobi","dealer":"Quick Deal Autos","dtype":"Broker","trust":"Unverified","band":[1050000,1350000]},{"id":40,"make":"Toyota","model":"Fielder","year":2018,"price":1560000,"cond":"Locally used","km":96000,"cc":1500,"fuel":"Petrol","trans":"Automatic","drive":"2WD","body":"Station wagon","seats":5,"county":"Kajiado","city":"Ngong","dealer":"Ngong Hills Motors","dtype":"Dealer","trust":"Inspected","band":[1450000,1800000]}]},"price_bands":{"_meta":{"description":"Per-model price bands derived from our own listing index. Overwritten by the scheduled crawl workflow once a real crawl has run and passed the quality gate. A band is never published on fewer than 3 comparable observations - the site shows the asking price with no fair-price verdict rather than guessing.","last_verified":null,"expiry_days":7,"grade":"Confirmed - derived from our own dataset","band_count":0,"shape":{"Make|Model|Year":{"make":"Toyota","model":"Fielder","year":2019,"n":15,"p25":1650000,"median":1780000,"p75":1900000,"min":1500000,"max":2100000,"confidence":"high"}}},"bands":{}}};
+// Feature flags and site constants.
+// Flip a flag here rather than deleting code — makes it reversible and reviewable.
+
+const FLAGS = {
+  // LIVE LISTINGS. Keep false until a real crawl has run AND data_quality.py has passed.
+  // Publishing unverified listings under a trust badge is the exact failure this product exists
+  // to fix. The build warns loudly if this is true while listings.json is still sample data.
+  listings: false,
+
+  financing: true,
+  importCalc: true,
+  garages: true,
+  verify: true,
+
+  // Capture financing leads. Requires a form endpoint (see docs/SETUP.md) before enabling.
+  leadCapture: false,
+};
+
+const SITE = {
+  name: 'GariHakika',
+  tagline: 'Know before you buy',
+  domain: 'garihakika.co.ke',
+  contact: 'hello@garihakika.co.ke',
+  botContact: 'data@garihakika.co.ke',
+};
+
+// Never publish a price band from fewer than this many observations.
+const MIN_BAND_OBSERVATIONS = 3;
+
+// Formatting and shared maths. Pure functions, no DOM.
+
+const KES = n => 'KSh ' + Math.round(n).toLocaleString('en-KE');
+
+const KESshort = n =>
+  n >= 1e6 ? 'KSh ' + (n / 1e6).toFixed(2).replace(/\.?0+$/, '') + 'M'
+           : 'KSh ' + Math.round(n / 1000) + 'K';
+
+const pct = n => (n * 100).toFixed(1) + '%';
+
+/** Standard amortising repayment on a reducing-balance loan. */
+function monthlyPayment(price, depositPct, months, ratePa) {
+  const loan = price * (1 - depositPct / 100);
+  const r = ratePa / 100 / 12;
+  return r === 0 ? loan / months : (loan * r) / (1 - Math.pow(1 + r, -months));
+}
+
+/** Comprehensive insurance rate for a vehicle value, from market.json bands. */
+function insuranceRate(value, market) {
+  const band = market.insurance.bands.find(b => b.value_max === null || value <= b.value_max);
+  return (band.rate_min + band.rate_max) / 2;
+}
+
+function annualInsurance(value, market) {
+  return Math.max(market.insurance.minimum_premium_kes, value * insuranceRate(value, market));
+}
+
+/**
+ * Monthly cost to own. This is the number the whole product exists to surface —
+ * a KSh 700k car with KSh 30k/month running costs is not a cheap car.
+ */
+function runningCost(car, modelInfo, market) {
+  const km = market.assumptions.monthly_km;
+  const kmpl = modelInfo?.kmpl || 13;
+
+  let fuel;
+  if (car.fuel === 'Electric') {
+    fuel = km * market.assumptions.ev_kwh_per_km * market.assumptions.electricity_kes_per_kwh;
+  } else {
+    const price = car.fuel === 'Diesel'
+      ? market.fuel.diesel_kes_per_litre
+      : market.fuel.petrol_kes_per_litre;
+    fuel = (km / kmpl) * price;
+  }
+
+  const insurance = annualInsurance(car.price, market) / 12;
+  const service = (car.price < 1.5e6 ? 32000 : car.price < 3e6 ? 55000 : car.price < 6e6 ? 95000 : 150000) / 12;
+  const tyres = (car.price < 1.5e6 ? 28000 : car.price < 3e6 ? 55000 : 110000) / 24;
+
+  return { fuel, insurance, service, tyres, total: fuel + insurance + service + tyres, kmpl };
+}
+
+/** Where an asking price sits against the market band for that model, year and mileage. */
+function priceVerdict(car) {
+  if (!car.band) return { label: 'No band yet', cls: 'neutral', note: 'Not enough comparable listings to judge this price. We would rather say nothing than guess.' };
+  const [lo, hi] = car.band;
+  const mid = (lo + hi) / 2;
+  const delta = (car.price - mid) / mid;
+  if (car.price < lo * 0.8) return { label: 'Price too low — verify', cls: 'danger', note: 'This is far below the market band. A price that looks too good is the bait in almost every advance-fee scam. Verify the registration on NTSA TIMS before any money moves.' };
+  if (delta < -0.08) return { label: 'Below market', cls: 'good', note: 'Below the typical range. Usually good, but confirm why: higher mileage, an accident record, or a pending logbook charge would all explain it.' };
+  if (delta > 0.10) return { label: 'Above market', cls: 'danger', note: 'Priced above comparable listings. Ask what justifies it — grade, service history, low mileage — and negotiate toward the middle of the band.' };
+  return { label: 'Fair price', cls: 'neutral', note: 'In line with comparable cars. Negotiate on condition and extras rather than on price alone.' };
+}
+
+/** Import eligibility under the 2026 eight-year rule. */
+function importEligible(year, market) {
+  return year >= new Date(market.import.first_registration_from).getFullYear();
+}
+
+// KRA duty estimator. Mirrors the duty stack in market.json so there is one source of truth.
+
+function estimateImport({ crsp, yearOfFirstReg, engineCc, fuel, shipping }, market) {
+  const imp = market.import;
+  const currentYear = new Date().getFullYear();
+  const age = Math.max(0, currentYear - yearOfFirstReg);
+  const depr = imp.depreciation_by_age_years[Math.min(age, imp.depreciation_by_age_years.length - 1)];
+
+  const customsValue = crsp * (1 - depr);
+  const importDuty = customsValue * imp.duty.import_duty;
+
+  let exciseRate;
+  if (fuel === 'Electric') exciseRate = imp.duty.excise_electric;
+  else if (engineCc > 3000 || (fuel === 'Diesel' && engineCc > 2500)) exciseRate = imp.duty.excise_gt_3000cc_petrol_or_2500cc_diesel;
+  else if (engineCc > 1500) exciseRate = imp.duty.excise_gt_1500cc;
+  else exciseRate = imp.duty.excise_le_1500cc;
+
+  const excise = (customsValue + importDuty) * exciseRate;
+  const vat = (customsValue + importDuty + excise) * imp.duty.vat;
+  const idf = customsValue * imp.duty.idf;
+  const rdl = customsValue * imp.duty.rdl;
+  const taxes = importDuty + excise + vat + idf + rdl;
+
+  const minYear = new Date(imp.first_registration_from).getFullYear();
+
+  return {
+    customsValue, importDuty, exciseRate, excise, vat, idf, rdl, taxes,
+    shipping, total: customsValue + taxes + shipping,
+    eligible: yearOfFirstReg >= minYear,
+    minYear,
+    caveat: 'Estimate only. KRA applies its own CRSP schedule and depreciation table; your final assessment can differ. Use this to sanity-check an importer quote, not to replace it.',
+  };
+}
+
+// Seller risk heuristic. Deliberately conservative: it can raise suspicion, never clear a seller.
+
+const BEHAVIOUR_WEIGHTS = {
+  "Won't allow independent inspection": 16,
+  'Pushing for a deposit today': 14,
+  "Won't meet at a fixed address": 15,
+  "Logbook 'still at the bank'": 14,
+  'Only accepts cash': 12,
+  'Photos look like stock images': 13,
+  'Price far below others': 15,
+  'Has physical logbook + ID ready': -15,
+};
+
+const SOURCE_WEIGHTS = {
+  'Facebook group / WhatsApp': 22,
+  'Classifieds site': 8,
+  'Registered dealer yard': -12,
+  'Direct from owner': 4,
+};
+
+function assessSeller({ behaviours = [], source, price }) {
+  let risk = 20;
+  const notes = [];
+
+  for (const b of behaviours) {
+    risk += BEHAVIOUR_WEIGHTS[b] ?? 10;
+    notes.push(b.startsWith('Has physical')
+      ? { kind: 'good', text: 'Seller has the logbook and ID on hand — verify the name on both matches, then run it through NTSA TIMS.' }
+      : { kind: 'bad', text: `${b} — one of the most common patterns in Kenyan car fraud.` });
+  }
+
+  risk += SOURCE_WEIGHTS[source] ?? 0;
+  if (source === 'Facebook group / WhatsApp') {
+    notes.push({ kind: 'bad', text: 'Social groups carry the highest fraud rate because there is no platform accountability. Treat every listing there as unverified until proven otherwise.' });
+  }
+  if (source === 'Registered dealer yard') {
+    notes.push({ kind: 'good', text: 'A registered yard with a physical address and business permit is materially lower risk — you know where to find them afterwards.' });
+  }
+  if (price && price < 800000) {
+    risk += 8;
+    notes.push({ kind: 'warn', text: 'At this price point, check the market band for the exact model and year. Prices well under the band are the classic bait.' });
+  }
+
+  risk = Math.max(0, Math.min(100, risk));
+  const level = risk >= 60 ? { label: 'HIGH RISK', cls: 'danger' }
+              : risk >= 35 ? { label: 'PROCEED WITH CAUTION', cls: 'warn' }
+                           : { label: 'LOWER RISK', cls: 'good' };
+
+  return {
+    risk, level, notes,
+    always: 'Whatever the score: search the registration on tims.ntsa.go.ke and pay for an independent inspection before any money moves. Those two steps cost under KSh 10,000 and prevent almost every loss in this market.',
+  };
+}
+
+// GariHakika — application shell.
+// No framework, no build step. ES modules loaded directly by the browser.
+
+
+
+
+const $ = id => document.getElementById(id);
+const el = (tag, cls, html) => { const n = document.createElement(tag); if (cls) n.className = cls; if (html != null) n.innerHTML = html; return n; };
+
+const CAR_SVG = `<svg viewBox="0 0 200 80" aria-hidden="true"><path fill="currentColor" opacity=".5" d="M20 58c0-6 4-10 10-10h6c2-10 10-22 24-24 14-2 30-2 42 0 12 2 22 12 28 20l16 4c6 2 10 6 10 10v6c0 3-2 5-5 5h-8a13 13 0 0 1-26 0H63a13 13 0 0 1-26 0h-9c-4 0-8-3-8-7z"/><circle cx="50" cy="62" r="9" fill="#0f1613"/><circle cx="137" cy="62" r="9" fill="#0f1613"/><circle cx="50" cy="62" r="3.5" fill="#e9efeb"/><circle cx="137" cy="62" r="3.5" fill="#e9efeb"/></svg>`;
+
+const DATA = {};
+const state = {
+  price: Infinity, monthly: 0, county: '', city: '',
+  body: [], cond: [], fuel: [], trans: [], drive: [], trust: [],
+  year: 0, cc: 0, sort: 'rec',
+};
+
+// --------------------------------------------------------------------------- boot
+async function boot() {
+  try {
+    const models = EMBED.models, market = EMBED.market, finance = EMBED.finance,
+          garages = EMBED.garages, checks = EMBED.checks, listings = EMBED.listings;
+    DATA.models = models.models;
+    DATA.market = market;
+    DATA.lenders = finance.lenders;
+    DATA.financeMeta = finance._meta;
+    DATA.garages = garages.garages;
+    DATA.checks = checks.checks;
+    DATA.listings = listings.listings;
+    DATA.listingsMeta = listings._meta;
+
+    DATA.bands = EMBED.price_bands.bands || {};
+  } catch (e) {
+    $('boot-error').hidden = false;
+    $('boot-error').textContent = `Could not load site data: ${e.message}. If you are running locally, serve the folder over HTTP rather than opening the file directly.`;
+    return;
+  }
+
+  applyFlags();
+  showDataBanners();
+  buildFilters();
+  renderCards();
+  buildFinance();
+  buildImport();
+  buildGarages();
+  buildVerify();
+  wireNav();
+  $('app').hidden = false;
+  $('boot').hidden = true;
+}
+
+function applyFlags() {
+  document.querySelectorAll('[data-flag]').forEach(n => {
+    if (!FLAGS[n.dataset.flag]) n.remove();
+  });
+  $('site-name').textContent = SITE.name;
+  document.querySelectorAll('[data-contact]').forEach(n => { n.textContent = SITE.contact; n.href = 'mailto:' + SITE.contact; });
+}
+
+/** Honesty banners. If the data is sample or thin, say so on the page, not in a comment. */
+function showDataBanners() {
+  const b = $('banners');
+  if (DATA.listingsMeta?.is_sample && FLAGS.listings) {
+    b.append(el('div', 'banner danger',
+      '<b>Sample data.</b> These listings are illustrative and were not collected from real dealers. ' +
+      'The live listings flag is on while the dataset is still sample — turn it off, or run the crawler and quality gate.'));
+  } else if (DATA.listingsMeta?.is_sample) {
+    b.append(el('div', 'banner',
+      '<b>Preview mode.</b> Live listings are switched off until a real crawl has run and passed the quality gate. ' +
+      'Everything else on this page — running costs, financing, duty, garages, verification — is real.'));
+  }
+  const bandCount = Object.keys(DATA.bands).length;
+  if (bandCount === 0) {
+    b.append(el('div', 'banner',
+      `<b>Price bands not built yet.</b> A band needs at least ${MIN_BAND_OBSERVATIONS} comparable listings before we will show it. ` +
+      'Until then we show the asking price without a fair-price verdict rather than guessing.'));
+  }
+  const fuelAge = daysSince(DATA.market.fuel && DATA.market._meta.last_verified);
+  if (fuelAge > (DATA.market.fuel.expiry_days || 30)) {
+    b.append(el('div', 'banner warn',
+      `<b>Fuel price is ${fuelAge} days old</b> and the EPRA cycle runs monthly. Running-cost figures below may be stale.`));
+  }
+}
+
+const daysSince = d => d ? Math.floor((Date.now() - new Date(d)) / 86400000) : 0;
+
+// --------------------------------------------------------------------------- derived
+function modelInfo(car) { return DATA.models[`${car.make} ${car.model}`] || null; }
+
+function bandFor(car) {
+  const key = `${car.make}|${car.model}|${car.year}`;
+  const b = DATA.bands[key];
+  if (b && b.n >= MIN_BAND_OBSERVATIONS) return [b.p25, b.p75];
+  return car.band || null;   // sample data ships with its own band; real data will not
+}
+
+function enrich(car) {
+  const info = modelInfo(car);
+  return { ...car, band: bandFor(car), info, cost: runningCost(car, info, DATA.market) };
+}
+
+// --------------------------------------------------------------------------- filters
+const uniq = k => [...new Set(DATA.listings.map(c => c[k]))].sort();
+
+function chipGroup(containerId, values, key) {
+  const box = $(containerId);
+  box.innerHTML = '';
+  values.forEach(v => {
+    const b = el('button', 'chip', v);
+    b.type = 'button';
+    b.setAttribute('aria-pressed', 'false');
+    b.onclick = () => {
+      const on = b.classList.toggle('on');
+      b.setAttribute('aria-pressed', String(on));
+      state[key] = on ? [...state[key], v] : state[key].filter(x => x !== v);
+      renderCards();
+    };
+    box.append(b);
+  });
+}
+
+function buildFilters() {
+  chipGroup('f-body', uniq('body'), 'body');
+  chipGroup('f-cond', uniq('cond'), 'cond');
+  chipGroup('f-fuel', uniq('fuel'), 'fuel');
+  chipGroup('f-trans', uniq('trans'), 'trans');
+  chipGroup('f-drive', uniq('drive'), 'drive');
+  chipGroup('f-trust', ['Verified', 'Inspected', 'Unverified'], 'trust');
+
+  $('f-county').innerHTML = '<option value="">All counties</option>' + uniq('county').map(v => `<option>${v}</option>`).join('');
+  $('f-year').innerHTML = '<option value="0">Any year</option>' + [2019, 2018, 2017, 2016, 2015, 2014].map(y => `<option value="${y}">${y} or newer</option>`).join('');
+
+  $('f-price').oninput = e => {
+    state.price = +e.target.value >= 12e6 ? Infinity : +e.target.value;
+    $('f-price-label').textContent = state.price === Infinity ? 'Any' : KESshort(state.price);
+    renderCards();
+  };
+  $('f-monthly').oninput = e => {
+    state.monthly = +e.target.value;
+    $('f-monthly-label').textContent = state.monthly ? KES(state.monthly) + '/mo' : 'Off';
+    renderCards();
+  };
+  $('f-county').onchange = e => {
+    state.county = e.target.value; state.city = '';
+    const cities = [...new Set(DATA.listings.filter(c => !state.county || c.county === state.county).map(c => c.city))].sort();
+    $('f-city').innerHTML = '<option value="">All towns</option>' + cities.map(v => `<option>${v}</option>`).join('');
+    renderCards();
+  };
+  $('f-city').onchange = e => { state.city = e.target.value; renderCards(); };
+  $('f-year').onchange = e => { state.year = +e.target.value; renderCards(); };
+  $('f-cc').onchange = e => { state.cc = +e.target.value; renderCards(); };
+  $('sort').onchange = e => { state.sort = e.target.value; renderCards(); };
+  $('clear').onclick = resetFilters;
+
+  document.querySelectorAll('[data-preset]').forEach(b => b.onclick = () => applyPreset(b.dataset.preset));
+
+  const a = DATA.market.assumptions;
+  $('monthly-note').textContent = `Assumes ${a.default_deposit_pct}% deposit, ${a.default_term_months} months, ${a.default_loan_rate_pa}% p.a.`;
+  $('fuel-stat').textContent = KES(DATA.market.fuel.petrol_kes_per_litre);
+  $('stat-listings').textContent = DATA.listings.length;
+  $('stat-dealers').textContent = new Set(DATA.listings.map(c => c.dealer)).size;
+  $('stat-counties').textContent = uniq('county').length;
+}
+
+function resetFilters() {
+  Object.assign(state, { price: Infinity, monthly: 0, county: '', city: '', body: [], cond: [], fuel: [], trans: [], drive: [], trust: [], year: 0, cc: 0 });
+  document.querySelectorAll('.chip.on').forEach(c => { c.classList.remove('on'); c.setAttribute('aria-pressed', 'false'); });
+  $('f-price').value = 12e6; $('f-price-label').textContent = 'Any';
+  $('f-monthly').value = 0; $('f-monthly-label').textContent = 'Off';
+  $('f-county').value = ''; $('f-city').value = ''; $('f-year').value = 0; $('f-cc').value = 0;
+  renderCards();
+}
+
+function applyPreset(p) {
+  resetFilters();
+  const set = (key, values) => {
+    state[key] = values;
+    values.forEach(v => {
+      const c = [...document.querySelectorAll(`#f-${key} .chip`)].find(x => x.textContent === v);
+      if (c) { c.classList.add('on'); c.setAttribute('aria-pressed', 'true'); }
+    });
+  };
+  if (p === 'firstcar') { state.price = 1.2e6; $('f-price').value = 1.2e6; $('f-price-label').textContent = 'KSh 1.2M'; }
+  if (p === 'family') set('body', ['MPV', 'SUV']);
+  if (p === 'work') set('body', ['Van', 'Pick-up']);
+  if (p === 'economy') set('fuel', ['Hybrid', 'Electric']);
+  if (p === 'rough') set('drive', ['4WD', 'AWD']);
+  renderCards();
+  $('results').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// --------------------------------------------------------------------------- results
+function filtered() {
+  const a = DATA.market.assumptions;
+  let rows = DATA.listings.filter(c => {
+    if (c.price > state.price) return false;
+    if (state.monthly && monthlyPayment(c.price, a.default_deposit_pct, a.default_term_months, a.default_loan_rate_pa) > state.monthly) return false;
+    if (state.county && c.county !== state.county) return false;
+    if (state.city && c.city !== state.city) return false;
+    for (const k of ['body', 'cond', 'fuel', 'trans', 'drive', 'trust']) {
+      if (state[k].length && !state[k].includes(c[k])) return false;
+    }
+    if (state.year && c.year < state.year) return false;
+    if (state.cc && c.cc > state.cc) return false;
+    return true;
+  }).map(enrich);
+
+  const score = c => {
+    const v = priceVerdict(c);
+    const trust = c.trust === 'Verified' ? 3 : c.trust === 'Inspected' ? 2 : 0;
+    const verdict = v.cls === 'good' ? 8 : v.cls === 'neutral' ? 4 : -6;
+    return trust * 10 + verdict + (c.info?.resale || 3) * 2 - c.cost.total / 8000;
+  };
+
+  const sorters = {
+    rec: (a, b) => score(b) - score(a),
+    plow: (a, b) => a.price - b.price,
+    phigh: (a, b) => b.price - a.price,
+    year: (a, b) => b.year - a.year,
+    km: (a, b) => a.km - b.km,
+    run: (a, b) => a.cost.total - b.cost.total,
+  };
+  return rows.sort(sorters[state.sort]);
+}
+
+function renderCards() {
+  const rows = filtered();
+  const a = DATA.market.assumptions;
+  $('result-count').textContent = rows.length;
+  $('result-sub').textContent = state.monthly ? `· repayable under ${KES(state.monthly)}/month` : '';
+  $('empty').hidden = rows.length > 0;
+
+  const grid = $('cards');
+  grid.innerHTML = '';
+  rows.forEach(c => {
+    const v = priceVerdict(c);
+    const m = monthlyPayment(c.price, a.default_deposit_pct, a.default_term_months, a.default_loan_rate_pa);
+    const badgeCls = c.trust === 'Verified' ? 'ok' : c.trust === 'Inspected' ? 'info' : 'warn';
+
+    const card = el('article', 'card');
+    card.innerHTML = `
+      <div class="thumb">${CAR_SVG}
+        <span class="badge ${badgeCls}">${c.trust}</span>
+        <span class="verdict ${v.cls}">${v.label}</span>
+      </div>
+      <div class="card-body">
+        <h3>${c.make} ${c.model}</h3>
+        <p class="sub">${c.year} · ${c.cond}</p>
+        <p class="price">${KES(c.price)}</p>
+        <p class="permonth">or ${KES(m)}/mo · runs ~${KES(c.cost.total)}/mo</p>
+        <ul class="meta">
+          <li>${c.km.toLocaleString()} km</li><li>${c.cc ? c.cc + 'cc' : 'EV'}</li>
+          <li>${c.fuel}</li><li>${c.trans}</li><li>${c.drive}</li><li>${c.seats} seats</li>
+        </ul>
+        <p class="loc"><span>${c.city}, ${c.county}</span><span>${c.dtype}</span></p>
+      </div>
+      <div class="card-actions">
+        <button class="btn primary">Full breakdown</button>
+        <button class="btn ghost">Buyer FAQs</button>
+      </div>`;
+    const [full, faq] = card.querySelectorAll('button');
+    full.onclick = () => openDetail(c);
+    faq.onclick = () => openDetail(c, 'faq');
+    grid.append(card);
+  });
+}
+
+// --------------------------------------------------------------------------- detail
+function openDetail(car, tab) {
+  const c = car, v = priceVerdict(c), a = DATA.market.assumptions;
+  const info = c.info || { kmpl: 13, parts: 'Moderate', resale: 3, faults: [], faqs: [] };
+  const gs = DATA.garages.filter(g => g.county === c.county);
+  const rate = c.price > 3e6 ? 0.86 : 0.90;
+  const depr = [0, 1, 2, 3].map(y => Math.round(c.price * Math.pow(rate, y)));
+  const bandPos = c.band ? Math.max(0, Math.min(100, ((c.price - c.band[0]) / (c.band[1] - c.band[0])) * 100)) : 0;
+
+  $('sheet').innerHTML = `
+    <header class="sheet-head">
+      <div>
+        <h2>${c.year} ${c.make} ${c.model}</h2>
+        <p>${c.cond} · ${c.km.toLocaleString()} km · ${c.city}, ${c.county} · ${c.dealer} (${c.dtype})</p>
+      </div>
+      <button class="close" aria-label="Close">&times;</button>
+    </header>
+    <div class="sheet-body">
+      <div class="tabs" role="tablist">
+        ${['Price &amp; value', 'Cost to own', 'Specs', 'Buyer FAQs', 'Known faults', 'Finance', 'Service nearby']
+          .map((t, i) => `<button role="tab" aria-selected="${i === 0}" data-tab="t${i}">${t}</button>`).join('')}
+      </div>
+
+      <section class="pane" id="t0">
+        <div class="two">
+          <div class="box">
+            <h4>Is this a fair price?</h4>
+            <p class="big">${KES(c.price)}</p>
+            <p><span class="pill ${v.cls}">${v.label}</span><span class="pill ${c.trust === 'Verified' ? 'good' : c.trust === 'Inspected' ? 'info' : 'warn'}">${c.trust}</span></p>
+            ${c.band ? `
+              <p class="sub">Market band for a ${c.year} ${c.model} at this mileage:</p>
+              <div class="bar"><i style="width:${bandPos}%"></i></div>
+              <p class="sub spread"><span>${KESshort(c.band[0])}</span><span>${KESshort(c.band[1])}</span></p>`
+              : `<p class="note">No market band yet — fewer than ${MIN_BAND_OBSERVATIONS} comparable listings. We would rather show nothing than a verdict built on thin data.</p>`}
+            <p>${v.note}</p>
+          </div>
+          <div class="box">
+            <h4>What it will be worth later</h4>
+            <table><tbody>
+              <tr><td>Today</td><td><b>${KES(depr[0])}</b></td></tr>
+              <tr><td>In 1 year</td><td>${KES(depr[1])}</td></tr>
+              <tr><td>In 2 years</td><td>${KES(depr[2])}</td></tr>
+              <tr><td>In 3 years</td><td>${KES(depr[3])}</td></tr>
+            </tbody></table>
+            <p class="note">Resale strength: ${'★'.repeat(info.resale)}${'☆'.repeat(5 - info.resale)} — ${info.resale >= 5 ? 'exceptional; this model always finds a buyer in Kenya.' : info.resale >= 4 ? 'strong and predictable.' : info.resale >= 3 ? 'average; expect to negotiate when selling.' : 'weak; a small buyer pool means a slow sale and a discount.'}</p>
+            <p class="note">Three-year total cost including running costs: <b>${KES(c.price - depr[3] + c.cost.total * 36)}</b></p>
+          </div>
+        </div>
+      </section>
+
+      <section class="pane" id="t1" hidden>
+        <div class="two">
+          <div class="box">
+            <h4>Monthly running cost — ${a.monthly_km.toLocaleString()} km/month</h4>
+            <p class="big">${KES(c.cost.total)}</p>
+            <dl class="kv">
+              <div><dt>Fuel${c.fuel === 'Electric' ? ' (charging)' : ` @ ${c.cost.kmpl} km/l`}</dt><dd>${KES(c.cost.fuel)}</dd></div>
+              <div><dt>Comprehensive insurance</dt><dd>${KES(c.cost.insurance)}</dd></div>
+              <div><dt>Servicing (spread)</dt><dd>${KES(c.cost.service)}</dd></div>
+              <div><dt>Tyres &amp; wear (spread)</dt><dd>${KES(c.cost.tyres)}</dd></div>
+            </dl>
+            <p class="note">Petrol ${KES(DATA.market.fuel.petrol_kes_per_litre)} / diesel ${KES(DATA.market.fuel.diesel_kes_per_litre)} per litre — ${DATA.market.fuel.source}, cycle to ${DATA.market.fuel.cycle_ends}.</p>
+          </div>
+          <div class="box">
+            <h4>Parts &amp; workshop reality</h4>
+            <dl class="kv">
+              <div><dt>Parts availability</dt><dd>${info.parts}</dd></div>
+              <div><dt>Garages in ${c.county} on our list</dt><dd>${gs.length}</dd></div>
+              <div><dt>Fuel economy</dt><dd>${c.fuel === 'Electric' ? '~0.18 kWh/km' : c.cost.kmpl + ' km/l'}</dd></div>
+            </dl>
+            <p>${/Very cheap|Cheapest/.test(info.parts)
+              ? 'You can get this car fixed in any town in Kenya, usually the same day, at a price you can predict. That is a large hidden part of its value.'
+              : /Specialist/.test(info.parts)
+              ? 'This needs a specialist. Confirm one operates in your town before you buy — a specialist-only car 200km from the nearest specialist becomes an expensive ornament.'
+              : 'Common service parts are easy to find in the main cities. Less common parts may need ordering, which means waiting and paying a premium.'}</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="pane" id="t2" hidden>
+        <dl class="specs">
+          ${[['Year', c.year], ['Condition', c.cond], ['Mileage', c.km.toLocaleString() + ' km'],
+             ['Engine', c.cc ? c.cc + 'cc' : 'Electric'], ['Fuel', c.fuel], ['Transmission', c.trans],
+             ['Drive', c.drive], ['Body', c.body], ['Seats', c.seats],
+             ['Economy', c.fuel === 'Electric' ? 'EV' : c.cost.kmpl + ' km/l'],
+             ['County', c.county], ['Town', c.city]]
+            .map(([k, val]) => `<div><dt>${k}</dt><dd>${val}</dd></div>`).join('')}
+        </dl>
+        <div class="box">
+          <h4>Import eligibility, if buying fresh</h4>
+          <p>${importEligible(c.year, DATA.market)
+            ? `A ${c.year} unit is <b>eligible</b> to import — the ${DATA.market.import.age_rule} requires first registration from ${DATA.market.import.first_registration_from}.`
+            : `A ${c.year} unit <b>cannot be imported</b> under the ${DATA.market.import.age_rule}. Cars of this age exist only as locally used units already registered in Kenya, which is why the price is lower and the supply is fixed and shrinking.`}</p>
+        </div>
+      </section>
+
+      <section class="pane" id="t3" hidden>
+        <div class="box">
+          <h4>What buyers actually ask about the ${c.model}</h4>
+          ${(info.faqs || []).map(f => `<details><summary>${f[0]}</summary><p>${f[1]}</p></details>`).join('') || '<p>FAQ set being compiled for this model.</p>'}
+        </div>
+      </section>
+
+      <section class="pane" id="t4" hidden>
+        <div class="two">
+          <div class="box"><h4>Weak points to check on the test drive</h4>
+            <ul>${(info.faults || []).map(f => `<li>${f}</li>`).join('')}</ul></div>
+          <div class="box"><h4>Non-negotiable checks</h4><ul>
+            <li>NTSA TIMS search on the registration — owner name and any logbook charge</li>
+            <li>An independent inspection you arrange, not one the seller provides</li>
+            <li>Cold start from properly cold — listen for rattle in the first five seconds</li>
+            <li>Test drive including a real hill and stop-start traffic</li>
+            <li>Service records that match the odometer reading</li>
+          </ul></div>
+        </div>
+      </section>
+
+      <section class="pane" id="t5" hidden>
+        <div class="box"><h4>What this car costs on finance</h4>
+          <table>
+            <thead><tr><th>Deposit</th><th>36 months</th><th>48 months</th><th>60 months</th></tr></thead>
+            <tbody>${[20, 30, 40].map(dp => `<tr><td><b>${dp}%</b> — ${KES(c.price * dp / 100)}</td>
+              ${[36, 48, 60].map(t => `<td>${KES(monthlyPayment(c.price, dp, t, a.default_loan_rate_pa))}</td>`).join('')}</tr>`).join('')}</tbody>
+          </table>
+          <p class="note">At ${a.default_loan_rate_pa}% p.a. reducing balance, before fees, tracker and insurance. ${c.trust === 'Unverified' ? '<b>Unverified listings cannot be submitted for financing through this site.</b>' : 'This listing is eligible for a financing partner referral.'}</p>
+        </div>
+        <div class="box"><h4>Add the real first-year costs</h4>
+          <dl class="kv">
+            <div><dt>Comprehensive insurance, year 1</dt><dd>${KES(annualInsurance(c.price, DATA.market))}</dd></div>
+            <div><dt>Logbook transfer &amp; NTSA</dt><dd>KSh 5,000 – 15,000</dd></div>
+            <div><dt>Tracker (lender requirement)</dt><dd>KSh 15,000 – 25,000</dd></div>
+            <div><dt>Independent inspection</dt><dd>KSh 5,500 – 9,000</dd></div>
+          </dl>
+        </div>
+      </section>
+
+      <section class="pane" id="t6" hidden>
+        <div class="box"><h4>Workshops in ${c.county}</h4>
+          ${gs.length ? `<table><thead><tr><th>Garage</th><th>Type</th><th>Speciality</th><th>Typical service</th></tr></thead><tbody>
+            ${gs.map(g => `<tr><td><b>${g.name}</b><br><span class="sub">${g.city}</span></td><td>${g.type}</td><td>${g.speciality}</td><td>${g.typical_cost}</td></tr>`).join('')}
+          </tbody></table>` : '<p>No listed workshops in this county yet — check the nearest major town. This is exactly the gap the garage directory is meant to close.</p>'}
+        </div>
+      </section>
+    </div>`;
+
+  const tabs = [...$('sheet').querySelectorAll('[role=tab]')];
+  tabs.forEach(b => b.onclick = () => {
+    tabs.forEach(x => x.setAttribute('aria-selected', 'false'));
+    $('sheet').querySelectorAll('.pane').forEach(p => p.hidden = true);
+    b.setAttribute('aria-selected', 'true');
+    $(b.dataset.tab).hidden = false;
+  });
+  $('sheet').querySelector('.close').onclick = closeDetail;
+  if (tab === 'faq') tabs[3].click();
+  $('modal').hidden = false;
+  document.body.style.overflow = 'hidden';
+  $('sheet').querySelector('.close').focus();
+}
+
+function closeDetail() { $('modal').hidden = true; document.body.style.overflow = ''; }
+
+// --------------------------------------------------------------------------- finance
+function buildFinance() {
+  if (!FLAGS.financing) return;
+  const a = DATA.market.assumptions;
+  $('l-price').value = 1500000;
+  $('l-deposit').value = a.default_deposit_pct;
+  $('l-term').value = a.default_term_months;
+  $('l-rate').value = a.default_loan_rate_pa;
+
+  const calc = () => {
+    const price = +$('l-price').value || 0, dep = +$('l-deposit').value,
+          term = +$('l-term').value, rate = +$('l-rate').value, feePct = +$('l-fee').value || 0;
+    $('l-deposit-label').textContent = dep + '%';
+    $('l-term-label').textContent = term + ' months';
+    $('l-rate-label').textContent = rate + '%';
+
+    const loan = price * (1 - dep / 100);
+    const m = monthlyPayment(price, dep, term, rate);
+    const total = m * term, fees = loan * feePct / 100;
+    const allIn = price * dep / 100 + total + fees;
+
+    $('l-monthly').textContent = KES(m);
+    $('l-o1').textContent = KES(price * dep / 100);
+    $('l-o2').textContent = KES(loan);
+    $('l-o3').textContent = KES(fees);
+    $('l-o4').textContent = KES(total - loan);
+    $('l-o5').textContent = KES(allIn);
+    $('l-o6').textContent = `${KES(allIn - price)} (${((allIn / price - 1) * 100).toFixed(1)}%)`;
+    $('l-insurance').textContent = KES(annualInsurance(price, DATA.market));
+  };
+  ['l-price', 'l-deposit', 'l-term', 'l-rate', 'l-fee'].forEach(id => $(id).oninput = calc);
+  calc();
+
+  $('lenders').innerHTML = DATA.lenders.map(l => `<tr>
+    <td><b>${l.name}</b></td>
+    <td><span class="pill ${l.type === 'Bank' ? 'info' : l.type === 'SACCO' ? 'good' : 'warn'}">${l.type}</span></td>
+    <td>${l.rate}</td><td>${l.deposit}</td><td>${l.max_term}</td><td>${l.best_for}</td></tr>`).join('');
+  $('lenders-note').textContent = `${DATA.financeMeta.grade}. ${DATA.financeMeta.description} Last verified ${DATA.financeMeta.last_verified}. Always confirm in writing, and ask for the total cost of credit — not the monthly figure.`;
+}
+
+// --------------------------------------------------------------------------- import
+function buildImport() {
+  if (!FLAGS.importCalc) return;
+  const minYear = new Date(DATA.market.import.first_registration_from).getFullYear();
+  const now = new Date().getFullYear();
+  $('i-year').innerHTML = Array.from({ length: now - minYear + 2 }, (_, k) => minYear + k)
+    .map(y => `<option${y === minYear ? ' selected' : ''}>${y}</option>`).join('');
+
+  const calc = () => {
+    const r = estimateImport({
+      crsp: +$('i-crsp').value || 0,
+      yearOfFirstReg: +$('i-year').value,
+      engineCc: +$('i-cc').value || 0,
+      fuel: $('i-fuel').value,
+      shipping: +$('i-shipping').value || 0,
+    }, DATA.market);
+
+    $('i-total').textContent = KES(r.total);
+    $('i-cv').textContent = KES(r.customsValue);
+    $('i-duty').textContent = KES(r.importDuty);
+    $('i-excise-rate').textContent = (r.exciseRate * 100) + '%';
+    $('i-excise').textContent = KES(r.excise);
+    $('i-vat').textContent = KES(r.vat);
+    $('i-idf').textContent = KES(r.idf + r.rdl);
+    $('i-taxes').textContent = KES(r.taxes);
+    $('i-ship').textContent = KES(r.shipping);
+    $('i-verdict').className = 'banner ' + (r.eligible ? 'ok' : 'danger');
+    $('i-verdict').innerHTML = r.eligible
+      ? `<b>Eligible.</b> First registered ${$('i-year').value}, inside the window for ${DATA.market.import.age_rule}. Must be right-hand drive and pass pre-export inspection.`
+      : `<b>Not importable.</b> Vehicles first registered before ${DATA.market.import.first_registration_from} cannot be cleared under ${DATA.market.import.age_rule}. KEBS inspects on year of first registration, not year of manufacture.`;
+    $('i-caveat').textContent = r.caveat;
+  };
+  ['i-crsp', 'i-year', 'i-cc', 'i-fuel', 'i-shipping'].forEach(id => { $(id).oninput = calc; $(id).onchange = calc; });
+  calc();
+}
+
+// --------------------------------------------------------------------------- garages
+function buildGarages() {
+  if (!FLAGS.garages) return;
+  const counties = [...new Set(DATA.garages.map(g => g.county))].sort();
+  const makes = [...new Set(DATA.garages.map(g => g.make))].sort();
+  $('g-county').innerHTML = '<option value="">All counties</option>' + counties.map(v => `<option>${v}</option>`).join('');
+  $('g-make').innerHTML = '<option value="">All makes</option>' + makes.map(v => `<option>${v}</option>`).join('');
+
+  const render = () => {
+    const c = $('g-county').value, m = $('g-make').value;
+    const rows = DATA.garages.filter(g => (!c || g.county === c) && (!m || g.make === m));
+    $('garages').innerHTML = rows.map(g => `
+      <article class="card"><div class="card-body">
+        <h3>${g.name}</h3>
+        <p class="sub">${g.city}, ${g.county} County</p>
+        <p><span class="pill ${g.type === 'Franchise' ? 'info' : g.type === 'Specialist' ? 'warn' : 'good'}">${g.type}</span><span class="pill good">${g.make}</span></p>
+        <p>${g.speciality}</p>
+        <p class="loc"><span>Typical cost</span><b>${g.typical_cost}</b></p>
+      </div></article>`).join('');
+    $('garage-count').textContent = rows.length;
+  };
+  $('g-county').onchange = render; $('g-make').onchange = render; render();
+}
+
+// --------------------------------------------------------------------------- verify
+function buildVerify() {
+  if (!FLAGS.verify) return;
+  const behaviours = ["Won't allow independent inspection", 'Pushing for a deposit today',
+    "Won't meet at a fixed address", "Logbook 'still at the bank'", 'Only accepts cash',
+    'Photos look like stock images', 'Price far below others', 'Has physical logbook + ID ready'];
+
+  $('v-flags').innerHTML = behaviours.map(b => `<button type="button" class="chip" aria-pressed="false">${b}</button>`).join('');
+  $('v-flags').onclick = e => {
+    const b = e.target.closest('.chip');
+    if (b) b.setAttribute('aria-pressed', String(b.classList.toggle('on')));
+  };
+
+  $('v-run').onclick = () => {
+    const chosen = [...$('v-flags').querySelectorAll('.chip.on')].map(b => b.textContent);
+    const r = assessSeller({ behaviours: chosen, source: $('v-source').value, price: +$('v-price').value });
+    $('v-out').innerHTML = `
+      <div class="verdict-block">
+        <p class="big ${r.level.cls}">${r.level.label}</p>
+        <div class="bar"><i class="${r.level.cls}" style="width:${r.risk}%"></i></div>
+        <p class="sub">Risk score ${r.risk}/100</p>
+      </div>
+      ${r.notes.map(n => `<p class="flag ${n.kind}">${n.text}</p>`).join('') || '<p class="sub">No behavioural flags selected.</p>'}
+      <div class="banner ok"><b>Next step regardless of score.</b> ${r.always}</div>`;
+  };
+
+  $('checks').innerHTML = DATA.checks.map((c, i) =>
+    `<div class="flag ${c.severity === 'red' ? 'bad' : 'warn'}"><b>${i + 1}. ${c.title}</b><br>${c.detail}</div>`).join('');
+}
+
+// --------------------------------------------------------------------------- nav
+function wireNav() {
+  document.querySelectorAll('nav [data-view]').forEach(b => b.onclick = () => {
+    document.querySelectorAll('nav [data-view]').forEach(x => x.setAttribute('aria-current', 'false'));
+    document.querySelectorAll('.view').forEach(v => v.hidden = true);
+    b.setAttribute('aria-current', 'page');
+    $('view-' + b.dataset.view).hidden = false;
+    window.scrollTo({ top: 0 });
+  });
+  $('modal').onclick = e => { if (e.target.id === 'modal') closeDetail(); };
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && !$('modal').hidden) closeDetail(); });
+}
+
+boot();
+
+</script>
+</body>
+</html>
