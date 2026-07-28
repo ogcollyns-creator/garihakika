@@ -175,6 +175,18 @@ h3{margin:0 0 14px;font-size:17px;letter-spacing:-.2px}
 .card h3{margin:0 0 3px;font-size:16px}
 .sheet h3{margin:0 0 10px;font-size:15px}
 
+/* Model guide index */
+.model-index{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px}
+.model-index .seg{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;box-shadow:var(--shadow)}
+.model-index h3{margin:0 0 8px;font-size:12px;text-transform:uppercase;letter-spacing:.7px;color:var(--ink-3)}
+.model-index ul{list-style:none;margin:0;padding:0}
+.model-index li{padding:6px 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:8px;align-items:baseline;font-size:14.5px}
+.model-index li:last-child{border:0}
+.model-index a{font-weight:600;text-decoration:none}
+.model-index a:hover{text-decoration:underline}
+.siblings{columns:2;font-size:14px}
+@media(max-width:600px){.siblings{columns:1}}
+
 </style></head><body>
 <header class="topbar"><div class="wrap bar"><p class="logo">Gari<span>Hakika</span></p>
 <nav><button onclick="location.href='index.html'">Back to site</button></nav></div></header>

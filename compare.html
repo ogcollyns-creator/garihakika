@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>GariHakikaBot — what our crawler does, and how to stop it</title>
-<meta name="description" content="What the GariHakika crawler collects, what it refuses to collect, and how to opt your site out. Opt-outs are honoured within 48 hours.">
-<style>
-/* GariHakika — single stylesheet. Mobile-first: Kenyan mobile data is metered, keep this small. */
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Best car websites in Kenya 2026 — an honest comparison | GariHakika</title>
+<meta name="description" content="Jiji, PigiaMe, Peach Cars, Garisea, Magari Deals and Kai &amp; Karo compared honestly — what each does well, what it does not, and where GariHakika fits. Including what we are bad at.">
+<meta property="og:title" content="Best car websites in Kenya 2026 — an honest comparison">
+<meta property="og:description" content="What each Kenyan car platform does well and badly, including our own gaps.">
+<meta property="og:type" content="article"><meta property="og:locale" content="en_KE">
+<meta name="theme-color" content="#0b6b3a">
+<style>/* GariHakika — single stylesheet. Mobile-first: Kenyan mobile data is metered, keep this small. */
 :root{
   --green:#0b6b3a; --green-2:#0e8347; --green-soft:#e8f5ee;
   --ink:#0f1613; --ink-2:#41524a; --ink-3:#6f8378;
@@ -179,88 +180,91 @@ h3{margin:0 0 14px;font-size:17px;letter-spacing:-.2px}
 .card h3{margin:0 0 3px;font-size:16px}
 .sheet h3{margin:0 0 10px;font-size:15px}
 
-/* Model guide index */
-.model-index{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px}
-.model-index .seg{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;box-shadow:var(--shadow)}
-.model-index h3{margin:0 0 8px;font-size:12px;text-transform:uppercase;letter-spacing:.7px;color:var(--ink-3)}
-.model-index ul{list-style:none;margin:0;padding:0}
-.model-index li{padding:6px 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:8px;align-items:baseline;font-size:14.5px}
-.model-index li:last-child{border:0}
-.model-index a{font-weight:600;text-decoration:none}
-.model-index a:hover{text-decoration:underline}
-.siblings{columns:2;font-size:14px}
-@media(max-width:600px){.siblings{columns:1}}
+.page-title{font-size:clamp(24px,4vw,30px);letter-spacing:-.6px;margin:26px 0 8px}
+h3{margin:0 0 8px;font-size:15px}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+</style></head><body>
 
-</style>
-</head>
-<body>
-<header class="topbar"><div class="wrap bar"><p class="logo">Gari<span>Hakika</span></p>
-<nav><button onclick="location.href='index.html'">Back to site</button></nav></div></header>
+<header class="topbar"><div class="wrap bar">
+  <p class="logo">Gari<span>Hakika</span></p>
+  <nav aria-label="Primary"><button onclick="location.href='index.html'">Browse cars</button></nav>
+</div></header>
 
-<main class="wrap" style="max-width:760px">
-<h1>GariHakikaBot</h1>
-<p class="lede">We run a crawler that reads publicly available vehicle listings to build a price index for Kenyan car buyers. This page explains exactly what it does, and gives you a one-email way to stop it.</p>
+<div class="hero"><div class="wrap">
+  <h1>Where to buy a car online in Kenya, compared honestly</h1>
+  <p class="lede">Including the parts where we come off worse. A comparison that only flatters the
+  people who wrote it is an advert, and you can tell the difference.</p>
+</div></div>
 
-<div class="banner ok">
-<b>Want us to stop?</b> Email <a href="mailto:data@garihakika.co.ke?subject=Crawler%20opt-out">data@garihakika.co.ke</a> with your domain.
-We remove it within 48 hours, permanently, and we keep a record. You do not need to explain why.
+<main class="wrap">
+
+<div class="banner"><b>Context.</b> Kenya's used-car market was worth about USD 1.32&nbsp;billion in
+2026 and is growing at roughly 3.2% a year. Most of it still moves through informal dealers, phone
+calls and Facebook groups — not through any website on this page.
+<span class="sub">Graded: Reported, market research, 2026.</span></div>
+
+<div class="panel">
+  <h2 class="page-title">The platforms</h2>
+  <div class="scroll-x"><table>
+    <thead><tr><th>Platform</th><th>Scale</th><th>What it does well</th><th>What it does not</th></tr></thead>
+    <tbody><tr>
+      <td><b>Jiji Kenya</b><br><span class="sub">Classifieds</span></td>
+      <td>35,600+ cars listed, from KSh 100,000</td><td>Sheer volume. If a car is for sale in Kenya, it is probably here first.</td><td>No verification of any kind. Duplicate and ghost listings are common, sold cars stay up, and prices are whatever the seller typed. It is a noticeboard, not a marketplace.</td></tr><tr>
+      <td><b>PigiaMe</b><br><span class="sub">Classifieds</span></td>
+      <td>Thousands of listings, dealer-weighted</td><td>Cleaner than Jiji, more dealer stock than private sellers, and it publishes per-model price statistics.</td><td>Still no independent verification. You are trusting the dealer's own description.</td></tr><tr>
+      <td><b>Peach Cars</b><br><span class="sub">Inspected marketplace</span></td>
+      <td>USD 16M raised; ~99 staff</td><td>A 225-point inspection on every car and embedded financing. The most serious attempt at trust in this market, and the standard everyone else is measured against.</td><td>Nairobi-centred and inventory-limited by design — inspecting every car caps how many cars you can list. Cars cost more than an equivalent private sale, which is the price of the inspection.</td></tr><tr>
+      <td><b>Garisea</b><br><span class="sub">Marketplace + research</span></td>
+      <td>1,381 active listings; median asking KSh 2.5M</td><td>Publishes real market research on Kenyan car prices, which almost nobody else does.</td><td>Smaller inventory than the classifieds, and skewed to the upper end — a median asking price of KSh 2.5M is well above what most Kenyan buyers are shopping at.</td></tr><tr>
+      <td><b>Magari Deals</b><br><span class="sub">Vetted marketplace</span></td>
+      <td>1,600+ listings</td><td>Dealers are vetted on business registration and a physical yard check, and seller contact details are gated rather than sprayed publicly.</td><td>Vetting covers the dealer, not the individual car. A verified dealer can still list a car with an odometer nobody checked.</td></tr><tr>
+      <td><b>Kai & Karo</b><br><span class="sub">Marketplace + parts</span></td>
+      <td>Cars, spare parts and accessories</td><td>One of the few that connects buying a car to keeping it running, which is the part most platforms ignore.</td><td>Smaller car inventory, Nairobi-focused.</td></tr><tr>
+      <td><b>Toyota Kenya / Automark</b><br><span class="sub">Franchise</span></td>
+      <td>Franchise-certified used stock</td><td>Manufacturer-backed, warrantied, with the widest service network in the country.</td><td>Toyota only, small volumes, and priced at a franchise premium.</td></tr></tbody>
+  </table></div>
+  <p class="note">Figures are each operator's own published numbers where available. We have not
+  audited them, and we have no commercial relationship with any platform on this page.</p>
+</div>
+
+<h2 class="page-title">What we do that they mostly do not</h2>
+<div class="grid3"><div class="box"><h3>We price the whole cost, not the sticker</h3><p>Every car shows what it costs to <em>own</em> — fuel at the current EPRA price, insurance at market rates, servicing, tyres. A KSh 700,000 car with KSh 30,000 a month in running costs is not a cheap car, and we are the only Kenyan site that says so on the card.</p></div><div class="box"><h3>We tell you whether the asking price is fair</h3><p>Prices are compared against a band built from listings across the market, so you know before you call whether you are being quoted sensibly. When we do not have enough data for a band, we say that instead of guessing.</p></div><div class="box"><h3>We refuse to publish thin data</h3><p>A price band needs at least three comparable listings before it appears. Most sites would show you a number anyway.</p></div><div class="box"><h3>We answer the questions people actually ask</h3><p>71 models with known faults, parts availability, resale strength and the specific questions buyers ask — the N20 timing chain, the Nissan CVT, what a hybrid battery really costs to replace in Nairobi.</p></div><div class="box"><h3>We show you the whole financing picture</h3><p>Bank rates against non-bank lenders, with total cost of credit rather than a monthly figure. The gap between a 14% bank loan and a 35% effective non-bank rate is the single most expensive decision most buyers make.</p></div><div class="box"><h3>We help you check the seller</h3><p>An eight-point fraud checklist and a seller risk tool built on the patterns that actually cost Kenyans money, pointing you at NTSA TIMS and an independent inspection.</p></div></div>
+
+<h2 class="page-title">What we are worse at, today</h2>
+<div class="banner warn">This section exists because a comparison page without one is marketing.
+Everything below is true as at 2026-07-27.</div>
+<div class="grid3"><div class="box"><h3>We have no live inventory yet</h3><p>Live listings are switched off. The cars you can browse today are illustrative. Peach Cars, Jiji and PigiaMe all have real stock right now and we do not.</p></div><div class="box"><h3>We have not inspected a single car</h3><p>No trust badge on this site has been earned by anyone from our team visiting a yard. When listings go live they will be marked Unverified until that changes.</p></div><div class="box"><h3>Our price bands are not built yet</h3><p>They need real listing data across the market. Until that exists we show asking prices without a fair-price verdict.</p></div><div class="box"><h3>Our coverage is thin outside Nairobi and Mombasa</h3><p>So is everyone's — but we are not going to pretend that is a strength. 35 of Kenya's 47 counties have no dealer on our list yet.</p></div><div class="box"><h3>We cannot sell you a car</h3><p>We are not a dealer and we take no part in the transaction. If you want someone to hand you keys and a warranty, a franchise dealer or Peach Cars is the right call.</p></div></div>
+
+<div class="panel">
+  <h2>So which should you actually use?</h2>
+  <dl class="kv">
+    <div><dt>You want the widest possible choice and you will do your own checking</dt><dd>Jiji or PigiaMe</dd></div>
+    <div><dt>You want someone else to have inspected the car and you will pay for that</dt><dd>Peach Cars</dd></div>
+    <div><dt>You want a warranty and a franchise service history</dt><dd>Toyota Kenya / Automark or another franchise</dd></div>
+    <div><dt>You want to work out what you can actually afford to own, before you shop</dt><dd>Start here, then buy anywhere</dd></div>
+  </dl>
+  <p>We are comfortable sending you elsewhere. The decision tools on this site are useful whether or
+  not you ever buy a car through us — that is the point of them.</p>
 </div>
 
 <div class="panel">
-<h2>How to identify us</h2>
-<p>Our requests carry this user agent:</p>
-<pre style="background:#f2f6f4;padding:12px;border-radius:8px;overflow-x:auto;font-size:13px">GariHakikaBot/1.0 (+https://garihakika.co.ke/bot; contact: data@garihakika.co.ke)</pre>
-<p class="note">If a request claims to be us and does not match that string, it is not us.</p>
+  <h2>Sources</h2>
+  <ul class="siblings"><li><b>Jiji Kenya</b> (jiji.co.ke) — Reported — listing count from Jiji's own category page, 2026</li><li><b>PigiaMe</b> (pigiame.co.ke) — Reported — publicly listed inventory, 2026</li><li><b>Peach Cars</b> (peachcars.co.ke) — Reported — company disclosures and press coverage, 2025–2026</li><li><b>Garisea</b> (garisea.com) — Reported — Garisea research page, updated 30 June 2026</li><li><b>Magari Deals</b> (magarideals.com) — Reported — Magari Deals dealer page, 2026</li><li><b>Kai & Karo</b> (kaiandkaro.com) — Reported — company site, 2026</li><li><b>Toyota Kenya / Automark</b> (toyotakenya.ke) — Reported — CFAO/Toyota Kenya, 2026</li></ul>
+  <p class="note">Platform facts change. If something here is out of date or wrong, tell us and we
+  will correct it with a date on the change.</p>
 </div>
 
 <div class="panel">
-<h2>What we collect</h2>
-<ul class="box" style="border:0;padding:0;margin:0">
-<li>Vehicle facts: make, model, year, price, mileage, engine size, fuel, transmission, body type, town</li>
-<li>The public URL of the listing, so we can link buyers back to you</li>
-<li>The dealer&rsquo;s <em>business</em> name and yard location</li>
-</ul>
+  <h2>Start with what a car costs to own</h2>
+  <p>71 models with running costs, known faults, parts availability, resale strength and
+  the questions buyers actually ask.</p>
+  <p><a href="index.html"><b>Compare all cars by budget, county and running cost →</b></a></p>
 </div>
-
-<div class="panel">
-<h2>What we refuse to collect</h2>
-<ul class="box" style="border:0;padding:0;margin:0">
-<li><b>No phone numbers.</b> Not the seller&rsquo;s, not the dealer&rsquo;s, not a WhatsApp link.</li>
-<li><b>No email addresses.</b></li>
-<li><b>No personal names, ID numbers or logbook images.</b></li>
-<li><b>No photographs.</b> We do not copy your images onto our servers.</li>
-<li><b>No verbatim listing copy.</b> We extract structured facts and write our own summaries.</li>
-</ul>
-<p>This is enforced in code, not policy: the extractor deletes any field whose name contains phone, mobile, whatsapp, email, seller, owner, contact or id_number before a row is ever written. We take facts about the <em>car</em>. To contact a seller, buyers are sent to your listing.</p>
-<p class="note">Kenya&rsquo;s Data Protection Act 2019 requires a lawful basis for processing personal data. Scraping and republishing seller contact details has none, so we do not do it.</p>
-</div>
-
-<div class="panel">
-<h2>How we behave</h2>
-<dl class="kv">
-<div><dt>Requests at once, per site</dt><dd>One. Always.</dd></div>
-<div><dt>Delay between requests</dt><dd>Your robots.txt <code>Crawl-delay</code>, or 2 seconds</dd></div>
-<div><dt>robots.txt</dt><dd>Obeyed. A disallowed path is never fetched.</dd></div>
-<div><dt>Login walls</dt><dd>Never bypassed. We do not create accounts to get behind them.</dd></div>
-<div><dt>Unchanged pages</dt><dd>Skipped via ETag / If-Modified-Since, so we cost you almost nothing</dd></div>
-<div><dt>Repeated errors</dt><dd>We back off, then stop requesting for 15 minutes</dd></div>
-</dl>
-</div>
-
-<div class="panel">
-<h2>What we publish</h2>
-<p>Aggregate statistics: median and interquartile price bands per model, year and mileage. A band is never published on fewer than three comparable listings — if we do not have the data, we say so rather than guess.</p>
-<p>We do not mirror your catalogue, and we never present another site&rsquo;s stock as our own. Listings collected by the crawler are marked <b>Unverified</b> and cannot carry a trust badge; a badge requires a person from our team to have visited the yard, matched an ID to a logbook, or taken the photographs.</p>
-</div>
-
-<div class="panel">
-<h2>We would rather have a feed than a crawler</h2>
-<p>If you are a dealer or a marketplace, a direct feed is better for both of us: your data arrives accurate and current, you control what we show, and we stop hitting your server. It is free, and it comes with a dealer profile.</p>
-<p><a href="mailto:hello@garihakika.co.ke?subject=Data%20feed">hello@garihakika.co.ke</a></p>
-</div>
-
-<p class="note">Last updated 27 July 2026.</p>
 </main>
-<footer><div class="wrap"><p><a href="index.html">Back to GariHakika</a> · <a href="privacy.html">Privacy</a></p></div></footer>
-</body>
-</html>
+
+<footer><div class="wrap">
+<p><b>GariHakika</b> — know before you buy.</p>
+<p><a href="index.html">All cars</a> · <a href="bot.html">Our crawler</a> ·
+<a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a></p>
+</div></footer>
+</body></html>
